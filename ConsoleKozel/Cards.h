@@ -10,3 +10,4 @@ enum CardsType {
 	b8, c8, p8, k8,
 	b6, c6, p6, k6
 };
+

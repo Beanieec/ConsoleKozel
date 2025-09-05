@@ -16,10 +16,10 @@ class Table
 public:
 	Table();
 	vector<CardsType> pack;
-	vector<CardsType> playerHand;
+	/*vector<CardsType> playerHand;*/
 public:
 	void packShuffle();
-	wstring cardToString(CardsType card);
+	string cardToString(CardsType card);
 	void printPack(Player* player);
 	void givingCards(Player* player);
 

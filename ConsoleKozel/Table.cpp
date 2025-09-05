@@ -1,7 +1,5 @@
 #include "Table.h"
 
-#include <Windows.h>
-
 Table::Table() {
     pack = { bA, cA, pA, kA,
             b10, c10, p10, k10,
@@ -19,14 +17,9 @@ void Table::packShuffle() {
     shuffle(pack.begin(), pack.end(), mt19937(rand()));
 }
 
-void printUnicode(const wstring& str) {
-    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-    WriteConsoleW(hConsole, str.c_str(), str.length(), NULL, NULL);
-}
-
 void Table::printPack(Player* player) {
     for (int i = 0; i < player->hand.size(); i++) {
-        printUnicode(cardToString(player->hand[i]));
+        cout << cardToString(player->hand[i]);
         cout << " | ";
     }
     cout << endl << endl;
@@ -40,39 +33,39 @@ void Table::givingCards(Player* player) {
     }
 }
 
-wstring Table::cardToString(CardsType card) {
+string Table::cardToString(CardsType card) {
     switch (card) {
-    case bA: return L"A\x04";
-    case cA: return L"A\x03";
-    case pA: return L"A\x06";
-    case kA: return L"A\x05";
-    case b10: return L"10\x04";
-    case c10: return L"10\x03";
-    case p10: return L"10\x06";
-    case k10: return L"10\x05";
-    case bK: return L"K\x04";
-    case cK: return L"K\x03";
-    case pK: return L"K\x06";
-    case kK: return L"K\x05";
-    case bQ: return L"Q\x04";
-    case cQ: return L"Q\x03";
-    case pQ: return L"Q\x06";
-    case kQ: return L"Q\x05";
-    case bJ: return L"J\x04";
-    case cJ: return L"J\x03";
-    case pJ: return L"J\x06";
-    case kJ: return L"J\x05";
-    case b9: return L"9\x04";
-    case c9: return L"9\x03";
-    case p9: return L"9\x06";
-    case k9: return L"9\x05";
-    case b8: return L"8\x04";
-    case c8: return L"8\x03";
-    case p8: return L"8\x06";
-    case k8: return L"8\x05";
-    case b6: return L"6\x04";
-    case c6: return L"6\x03";
-    case p6: return L"6\x06";
-    case k6: return L"6\x05";
+    case bA: return "A\x04";
+    case cA: return "A\x03";
+    case pA: return "A\x06";
+    case kA: return "A\x05";
+    case b10: return "10\x04";
+    case c10: return "10\x03";
+    case p10: return "10\x06";
+    case k10: return "10\x05";
+    case bK: return "K\x04";
+    case cK: return "K\x03";
+    case pK: return "K\x06";
+    case kK: return "K\x05";
+    case bQ: return "Q\x04";
+    case cQ: return "Q\x03";
+    case pQ: return "Q\x06";
+    case kQ: return "Q\x05";
+    case bJ: return "J\x04";
+    case cJ: return "J\x03";
+    case pJ: return "J\x06";
+    case kJ: return "J\x05";
+    case b9: return "9\x04";
+    case c9: return "9\x03";
+    case p9: return "9\x06";
+    case k9: return "9\x05";
+    case b8: return "8\x04";
+    case c8: return "8\x03";
+    case p8: return "8\x06";
+    case k8: return "8\x05";
+    case b6: return "6\x04";
+    case c6: return "6\x03";
+    case p6: return "6\x06";
+    case k6: return "6\x05";
     }
 }
