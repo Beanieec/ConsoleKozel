@@ -3,9 +3,8 @@
 
 class HumanPlayer : public Player
 {
-private:
 public:
 	HumanPlayer(string n) : Player(n) {}
-	void makeMove();
+	bool makeMove(CardsType hod);
 };
 

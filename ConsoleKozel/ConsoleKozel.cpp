@@ -5,12 +5,14 @@
 
 int main()
 {
+    UINT originalCP = GetConsoleOutputCP();
+    
+    SetConsoleCP(1251);
+    SetConsoleOutputCP(1251);
 
-    /*SetConsoleOutputCP(1251);*/
-    setlocale(LC_ALL, "RU");
-    Manager manager;
+    Manager manager(originalCP);
     while (true) {
 
         manager.initGame();
-    }
+    };
 }

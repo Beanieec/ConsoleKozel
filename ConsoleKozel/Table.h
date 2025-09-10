@@ -7,20 +7,19 @@
 #include <ctime>
 #include <vector>
 #include <string>
+#include <Windows.h>
 
 using namespace std;
 
 class Table
 {
-
+private:
 public:
 	Table();
 	vector<CardsType> pack;
-	/*vector<CardsType> playerHand;*/
+
 public:
 	void packShuffle();
-	string cardToString(CardsType card);
-	void printPack(Player* player);
 	void givingCards(Player* player);
 
 };

@@ -8,6 +8,7 @@ enum CardsType {
 	bJ, cJ, pJ, kJ,
 	b9, c9, p9, k9,
 	b8, c8, p8, k8,
-	b6, c6, p6, k6
+	b6, c6, p6, k6,
+	ukncard
 };
 

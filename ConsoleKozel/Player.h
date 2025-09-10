@@ -9,11 +9,12 @@ using namespace std;
 class Player
 {
 public:
+	CardsType lastHod;
 	string name;
 	vector<CardsType> hand;
 public:
 	Player(string n) : name(n){}
-	virtual void makeMove() = 0;
+	virtual bool makeMove(CardsType hod) = 0;
 	void choseDeal();
 };
 
