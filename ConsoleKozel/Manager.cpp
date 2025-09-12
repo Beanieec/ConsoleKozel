@@ -34,26 +34,30 @@ void Manager::initGame() {
 	cout << "Игрок: " << player1->name << endl;
 	printPack(player1);
 	
-	cout << endl << endl << "Игрок: " << player3->name << endl;
-	printPack(player3);
-
 	cout << endl << endl << "Игрок: " << player2->name << endl;
 	printPack(player2);
 
+	cout << endl << endl << "Игрок: " << player3->name << endl;
+	printPack(player3);
+
 	cout << endl << endl << "Игрок: " << player4->name << endl;
 	printPack(player4);
+
 	cout << "  *Подсказка!*\n";
 	cout << "  *Черви = c, Пики = p, Буби = b, Крести = k*\n  *Номиналы: 6, 8, 9, 10, J, Q, K, A*\n  *Ход имеет вид: k10 - 10 крести, bA - туз буби*\n";
+	
 	currentPlayer = player1;
+
 	system("pause");
 	system("cls");
-	while (true) {
+
+	while (!player4->hand.empty()) {
 		makeMove();
 	}
+
 }
 
 void Manager::makeMove() {
-	
 	
 	cout << "**********************|"; printCard(lastCard); cout << "|********************\n";
 	cout << "Игрок: " << currentPlayer->name << " Ходи!\n";
