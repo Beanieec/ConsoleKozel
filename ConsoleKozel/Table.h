@@ -16,7 +16,7 @@ class Table
 private:
 public:
 	Table();
-	vector<CardsType> pack;
+	vector<Cards> pack;
 
 public:
 	void packShuffle();

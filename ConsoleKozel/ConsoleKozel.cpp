@@ -5,6 +5,7 @@
 
 int main()
 {
+    
     UINT originalCP = GetConsoleOutputCP();
     
     SetConsoleCP(1251);

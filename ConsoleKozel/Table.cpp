@@ -12,14 +12,16 @@ Table::Table() {
     packShuffle();
 }
 
+
 void Table::packShuffle() {
     srand(time(0));
     shuffle(pack.begin(), pack.end(), mt19937(rand()));
 }
 
 void Table::givingCards(Player* player) {
+    Cards card(ukncard);
     for (int i = 0; i < 8; i++) {
-        CardsType card = pack.back();
+        card = pack.back();
         player->hand.push_back(card);
         pack.pop_back();
     }

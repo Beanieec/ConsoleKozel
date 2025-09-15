@@ -23,18 +23,24 @@ private:
 	Player* player3;
 	Player* player4;
 
-	CardsType lastCard = ukncard;
+	
+
+	Cards lastCard = ukncard;
+	Mast mMast;
 	
 public:
 	Manager(UINT originalCP) { this->originalCP = originalCP; }
 	void initGame();
 	void makeMove();
 
-	string cardToString(CardsType card);
-	CardsType stringToCard(string card);
+	void printCard(Cards card);
 	void printPack(Player* player);
-	void printCard(CardsType card);
-
+	void printMast(Mast mast);
+	
+	bool mainMast();
+	//CardsType stringToCard(string card);
+	//string cardToString(CardsType card);
+	//int cardToPoint(CardsType card);
 
 };
 
