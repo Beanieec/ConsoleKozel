@@ -18,33 +18,43 @@ private:
 
 	Table table;
 
-	Player* currentPlayer;
+	Player* currentPlayer = player1;
 	Player* player1;
 	Player* player2;
 	Player* player3;
 	Player* player4;
 
+	Player* winPlayer;
+	
+	Cards lastCard = ukncard;
+	Cards winCard = ukncard;
 	
 	string hod;
-	Cards lastCard = ukncard;
 	Mast mMast;
 	Mode mode = Start;
 	
+
+	int stepCounter = 0;
+	int realScore = 0;
+	int scoreT1 = 31;
+	int scoreT2 = 00;
 public:
 	Manager(UINT originalCP) { this->originalCP = originalCP; }
 	void initGame();
+	
+private:
 	void makeMove();
+	bool checkAndCodition();
 	void changePlayer();
+	bool choseFirstPlayer();
 
+	bool choseMainMast();
 
+	void printInfo();
 	void printCard(Cards card);
 	void printPack(Player* player);
 	void printMast(Mast mast);
 	
-	bool mainMast();
-	//CardsType stringToCard(string card);
-	//string cardToString(CardsType card);
-	//int cardToPoint(CardsType card);
-
+	
 };
 

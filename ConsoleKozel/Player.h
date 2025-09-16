@@ -16,7 +16,7 @@ public:
 	
 public:
 	Player(string n) : name(n){}
-	virtual bool makeMove(string hod, Cards& card) = 0;
+	virtual bool makeMove(string hod, Cards& card, Mast mast) = 0;
 	void choseDeal();
 };
 

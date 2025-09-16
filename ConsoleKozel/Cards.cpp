@@ -110,6 +110,7 @@ void Cards::initbA() {
 	this->view = "A\033[31m\x04\033[0m";
 	this->hod = "bA";
 	this->mast = bubi;
+	this->level = 12;
 }
 
 void Cards::initcA() {
@@ -118,6 +119,7 @@ void Cards::initcA() {
 	this->view = "A\033[31m\x03\033[0m";
 	this->hod = "cA";
 	this->mast = cervi;
+	this->level = 13;
 }
 void Cards::initpA() {
 	this->card = pA;
@@ -125,6 +127,7 @@ void Cards::initpA() {
 	this->view = "A\033[30m\x06\033[0m";
 	this->hod = "pA";
 	this->mast = piki;
+	this->level = 14;
 }
 void Cards::initkA() {
 	this->card = kA;
@@ -132,6 +135,7 @@ void Cards::initkA() {
 	this->view = "A\033[30m\x05\033[0m";
 	this->hod = "kA";
 	this->mast = kresti;
+	this->level = 15;
 }
 void Cards::initb10() {
 	this->card = b10;
@@ -139,6 +143,7 @@ void Cards::initb10() {
 	this->view = "10\033[31m\x04\033[0m";
 	this->hod = "b10";
 	this->mast = bubi;
+	this->level = 8;
 }
 void Cards::initc10() {
 	this->card = c10;
@@ -146,6 +151,7 @@ void Cards::initc10() {
 	this->view = "10\033[31m\x03\033[0m";
 	this->hod = "c10";
 	this->mast = cervi;
+	this->level = 9;
 }
 void Cards::initp10() {
 	this->card = p10;
@@ -153,6 +159,7 @@ void Cards::initp10() {
 	this->view = "10\033[30m\x06\033[0m";
 	this->hod = "p10";
 	this->mast = piki;
+	this->level = 10;
 }
 void Cards::initk10() {
 	this->card = k10;
@@ -160,6 +167,7 @@ void Cards::initk10() {
 	this->view = "10\033[30m\x05\033[0m";
 	this->hod = "k10";
 	this->mast = kresti;
+	this->level = 11;
 }
 void Cards::initbK() {
 	this->card = bK;
@@ -167,6 +175,7 @@ void Cards::initbK() {
 	this->view = "K\033[31m\x04\033[0m";
 	this->hod = "bK";
 	this->mast = bubi;
+	this->level = 4;
 }
 void Cards::initcK() {
 	this->card = cK;
@@ -174,6 +183,7 @@ void Cards::initcK() {
 	this->view = "K\033[31m\x03\033[0m";
 	this->hod = "cK";
 	this->mast = cervi;
+	this->level = 5;
 }
 void Cards::initpK() {
 	this->card = pK;
@@ -181,6 +191,7 @@ void Cards::initpK() {
 	this->view = "K\033[30m\x06\033[0m";
 	this->hod = "pK";
 	this->mast = piki;
+	this->level = 6;
 }
 void Cards::initkK() {
 	this->card = kK;
@@ -188,6 +199,7 @@ void Cards::initkK() {
 	this->view = "K\033[30m\x05\033[0m";
 	this->hod = "kK";
 	this->mast = kresti;
+	this->level = 7;
 }
 void Cards::initbQ() {
 	this->card = bQ;
@@ -195,6 +207,7 @@ void Cards::initbQ() {
 	this->view = "Q\033[31m\x04\033[0m";
 	this->hod = "bQ";
 	this->mast = bubi;
+	this->level = 20;
 }
 void Cards::initcQ() {//
 	this->card = cQ;
@@ -202,6 +215,7 @@ void Cards::initcQ() {//
 	this->view = "Q\033[31m\x03\033[0m";
 	this->hod = "cQ";
 	this->mast = cervi;
+	this->level = 21;
 }
 void Cards::initpQ() {
 	this->card = pQ;
@@ -209,6 +223,7 @@ void Cards::initpQ() {
 	this->view = "Q\033[30m\x06\033[0m";
 	this->hod = "pQ";
 	this->mast = piki;
+	this->level = 22;
 }
 void Cards::initkQ() {
 	this->card = kQ;
@@ -216,6 +231,7 @@ void Cards::initkQ() {
 	this->view = "Q\033[30m\x05\033[0m";
 	this->hod = "kQ";
 	this->mast = kresti;
+	this->level = 23;
 }
 void Cards::initbJ() {
 	this->card = bJ;
@@ -223,6 +239,7 @@ void Cards::initbJ() {
 	this->view = "J\033[31m\x04\033[0m";
 	this->hod = "bJ";
 	this->mast = bubi;
+	this->level = 16;
 }
 void Cards::initcJ() {
 	this->card = cJ;
@@ -230,6 +247,7 @@ void Cards::initcJ() {
 	this->view = "J\033[31m\x03\033[0m";
 	this->hod = "cJ";
 	this->mast = cervi;
+	this->level = 17;
 }
 void Cards::initpJ() {
 	this->card = pJ;
@@ -237,6 +255,7 @@ void Cards::initpJ() {
 	this->view = "J\033[30m\x06\033[0m";
 	this->hod = "pJ";
 	this->mast = piki;
+	this->level = 18;
 }
 void Cards::initkJ() {
 	this->card = kJ;
@@ -244,6 +263,7 @@ void Cards::initkJ() {
 	this->view = "J\033[30m\x05\033[0m";
 	this->hod = "kJ";
 	this->mast = kresti;
+	this->level = 19;
 }
 void Cards::initb9() {
 	this->card = b9;
@@ -251,6 +271,7 @@ void Cards::initb9() {
 	this->view = "9\033[31m\x04\033[0m";
 	this->hod = "b9";
 	this->mast = bubi;
+	this->level = 3;
 }
 void Cards::initc9() {
 	this->card = c9;
@@ -258,6 +279,7 @@ void Cards::initc9() {
 	this->view = "9\033[31m\x03\033[0m";
 	this->hod = "c9";
 	this->mast = cervi;
+	this->level = 3;
 }
 void Cards::initp9() {
 	this->card = p9;
@@ -265,6 +287,7 @@ void Cards::initp9() {
 	this->view = "9\033[30m\x06\033[0m";
 	this->hod = "p9";
 	this->mast = piki;
+	this->level = 3;
 }
 void Cards::initk9() {
 	this->card = k9;
@@ -272,6 +295,7 @@ void Cards::initk9() {
 	this->view = "9\033[30m\x05\033[0m";
 	this->hod = "k9";
 	this->mast = kresti;
+	this->level = 3;
 }
 void Cards::initb8() {
 	this->card = b8;
@@ -279,6 +303,7 @@ void Cards::initb8() {
 	this->view = "8\033[31m\x04\033[0m";
 	this->hod = "b8";
 	this->mast = bubi;
+	this->level = 2;
 }
 void Cards::initc8() {
 	this->card = c8;
@@ -286,6 +311,7 @@ void Cards::initc8() {
 	this->view = "8\033[31m\x03\033[0m";
 	this->hod = "c8";
 	this->mast = cervi;
+	this->level = 2;
 }
 void Cards::initp8() {
 	this->card = p8;
@@ -293,6 +319,7 @@ void Cards::initp8() {
 	this->view = "8\033[30m\x06\033[0m";
 	this->hod = "p8";
 	this->mast = piki;
+	this->level = 2;
 }
 void Cards::initk8() {
 	this->card = k8;
@@ -300,6 +327,7 @@ void Cards::initk8() {
 	this->view = "8\033[30m\x05\033[0m";
 	this->hod = "k8";
 	this->mast = kresti;
+	this->level = 2;
 }
 void Cards::initb6() {
 	this->card = b6;
@@ -307,6 +335,7 @@ void Cards::initb6() {
 	this->view = "6\033[31m\x04\033[0m";
 	this->hod = "b6";
 	this->mast = bubi;
+	this->level = 1;
 }
 void Cards::initc6() {
 	this->card = c6;
@@ -314,6 +343,7 @@ void Cards::initc6() {
 	this->view = "6\033[31m\x03\033[0m";
 	this->hod = "c6";
 	this->mast = cervi;
+	this->level = 1;
 }
 void Cards::initp6() {
 	this->card = p6;
@@ -321,6 +351,7 @@ void Cards::initp6() {
 	this->view = "6\033[30m\x06\033[0m";
 	this->hod = "p6";
 	this->mast = piki;
+	this->level = 1;
 }
 void Cards::initk6() {
 	this->card = k6;
@@ -328,4 +359,5 @@ void Cards::initk6() {
 	this->view = "6\033[30m\x05\033[0m";
 	this->hod = "k6";
 	this->mast = kresti;
+	this->level = 24;
 }

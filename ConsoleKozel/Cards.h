@@ -26,7 +26,7 @@ public:
 	string view;
 	string hod;
 	Mast mast;
-	bool isMain = false;
+	int level;
 	Cards(CardsType card);
 private:
 

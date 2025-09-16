@@ -3,56 +3,45 @@
 
 void Manager::initGame() {
 	string name;
-	cout << "Приветсвую!\nВведите имя 1-го игрока 1-ой команды:" << endl << endl;
-
+	cout << "               *Приветсвую вас!*\n" 
+			"       *Вы попали в самую лучшую в мире*\n"
+			"            *версию карточной игры*\n"
+			"                 ***КОЗЁЛ***\n\n"
+			"*Введите имя 1-го игрока 1-ой команды:\n* ";
+	
+	cout << "\033[40m";
 	getline(cin, name);
+	cout << "\033[0m";
 	player1 = new HumanPlayer(name);
 	table.givingCards(player1);
 	
-
-	cout << "Введите имя 2-го игрока 1-ой команды:" << endl << endl;
-
+	cout << "\n*Введите имя 2-го игрока 1-ой команды:\n* ";
+	
+	cout << "\033[40m";
 	getline(cin, name);
+	cout << "\033[0m";
 	player3 = new HumanPlayer(name);
 	table.givingCards(player3);
 
+	cout << "\n*Введите имя 1-го игрока 2-ой команды:\n* ";
 
-	cout << "Введите имя 1-го игрока 2-ой команды:" << endl << endl;
-
+	cout << "\033[40m";
 	getline(cin, name);
+	cout << "\033[0m";
 	player2 = new HumanPlayer(name);
 	table.givingCards(player2);
 
-
-	cout << "Введите имя 2-го игрока 2-ой команды:" << endl << endl;
+	cout << "\n*Введите имя 2-го игрока 2-ой команды:\n* ";
 	
+	cout << "\033[40m";
 	getline(cin, name);
+	cout << "\033[0m";
 	player4 = new HumanPlayer(name);
 	table.givingCards(player4);
 	
-	system("cls");
-	cout << "Игрок: " << player1->name << endl;
-	printPack(player1);
-	
-	cout << endl << endl << "Игрок: " << player2->name << endl;
-	printPack(player2);
-
-	cout << endl << endl << "Игрок: " << player3->name << endl;
-	printPack(player3);
-
-	cout << endl << endl << "Игрок: " << player4->name << endl;
-	printPack(player4);
-
-	cout << "  *Подсказка!*\n";
-	cout << "  *Черви: c, Пики: p, Буби: b, Крести: k*\n  *Номиналы: 6, 8, 9, 10, J, Q, K, A*\n  *Ход имеет вид:\n  k10 - 10 крести,\n  bA - туз буби*\n";
-	
-	currentPlayer = player1;
-
-	system("pause");
 	system("cls");	
 
-	while (!player4->hand.empty()) {
-		
+	while (true) {	
 		makeMove();
 		/*for (int i = 0; i < table.pack.size(); i++) {
 			printCard(table.pack[i]);
@@ -65,48 +54,96 @@ void Manager::makeMove() {
 	switch (mode)
 	{
 	case Start:
-		if(mainMast())
-			mode = Game;
-		/*for (int i = 0; i < hand.size(); i++) {
-			if (hand[i].mast == mMast) {
-				hand[i].isMain = true;
-			}
-		}*/
+		cout << "  *Игрок: \033[40m" << player1->name << "\033[0m\n";
+		printPack(player1);
+
+		cout << endl << endl << "  *Игрок: \033[40m" << player2->name << "\033[0m\n";
+		printPack(player2);
+
+		cout << endl << endl << "  *Игрок: \033[40m" << player3->name << "\033[0m\n";
+		printPack(player3);
+
+		cout << endl << endl << "  *Игрок: \033[40m" << player4->name << "\033[0m\n";
+		printPack(player4);
+
+		cout << "                *Подсказка!*\n";
+		cout << "  *Черви: c, Пики: p, Буби: b, Крести: k*\n  *Номиналы: 6, 8, 9, 10, J, Q, K, A*\n  *Ход имеет вид:\n   k10 - 10 крести,\n   bA - туз буби*\n";
+		
+		choseFirstPlayer();
+
+		system("pause");
+		system("cls");
+
+		mode = ChoseMain;
 		break;
 	case Game:
-		cout << "\n********["; printMast(mMast); cout << "]********|"; printCard(lastCard); cout << "|*******["; printMast(mMast); cout << "]*******\n";
-		cout << "Игрок: " << currentPlayer->name << " Ходи!\n";
+		printInfo();
+		cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m Ходи!\n";
 		printPack(currentPlayer);
 		
-		cout << "Ход: ";
+		cout << "*Ход: ";
 		cin >> hod;
 
-		if (currentPlayer->makeMove(hod, lastCard)) {
+		if (currentPlayer->makeMove(hod, lastCard, mMast)) {
+			
 			table.pack.push_back(lastCard);
+			if (checkAndCodition()) {
+				return;
+			}
 		}
 		else
 		{
 			system("cls");
-			cout << "  *Неверный ход!*\n";
+			cout << "  *Неверный ход!*\n\n";
 			return;
 		}
-		cout << "\n\n";
+		cout << "\n";
 
 		changePlayer();
 		break;
 	case ChoseDeal:
+		//хвалёнки сам делай
+		mode = Game;
 		break;
 	case ChoseMain:
+		if (choseMainMast())
+			mode = ChoseDeal;
 		break;
+	}	
+}
+
+bool Manager::checkAndCodition() {
+	stepCounter++;
+	if (stepCounter <= 4) {
+		realScore += lastCard.point;
+
+
+		if (lastCard.level > 16) { // J Q
+			if (lastCard.level > winCard.level) {
+				winCard = lastCard;
+				winPlayer = currentPlayer;
+			}
+		}
+		else if (lastCard.mast == mMast) { // козыри
+			if (lastCard.level > winCard.level) {
+				winCard = lastCard;
+				winPlayer = currentPlayer;
+			}
+		}
+		else if (lastCard.level > winCard.level) { // остальные
+			winCard = lastCard;
+			winPlayer = currentPlayer;
+		}
 	}
-
-
-
-	
-	
-	
-
-	
+	if (stepCounter == 4) {
+		system("cls");
+		cout << "*Игрок: \033[40m" << winPlayer->name << "\033[0m забрал раздачу на " << realScore << " очк(а/ов)!\n";
+		currentPlayer = winPlayer;
+		stepCounter = 0;
+		realScore = 0;
+		return true;
+	}
+	return false;
 }
 
 void Manager::changePlayer() {
@@ -121,8 +158,11 @@ void Manager::changePlayer() {
 	}
 	else {
 		currentPlayer = player1;
-		system("cls");
 	}
+}
+
+void Manager::printInfo() {
+	cout << "********[" << scoreT1 << "]********"; printMast(mMast); cout << "|"; printCard(lastCard); cout << "|"; printMast(mMast); cout << "*******[" << scoreT2 << "]*******\n";
 }
 
 void Manager::printPack(Player* player) {
@@ -148,29 +188,29 @@ void Manager::printMast(Mast mast) {
 	switch (mast)
 	{
 	case bubi:
-		cout << "\033[31m\x04\x04\x04\033[0m";
+		cout << "\033[31m\x04\033[0m";
 		break;
 	case cervi:
-		cout << "\033[31m\x03\x03\x03\033[0m";
+		cout << "\033[31m\x03\033[0m";
 		break;
 	case piki:
-		cout << "\033[30m\x06\x06\x06\033[0m";
+		cout << "\033[30m\x06\033[0m";
 		break;
 	case kresti:
-		cout << "\033[30m\x05\x05\x05\033[0m";
+		cout << "\033[30m\x05\033[0m";
 		break;
 	}
 	SetConsoleOutputCP(1251);
 }
 
-bool Manager::mainMast() {
+bool Manager::choseMainMast() {
 	string mast;
-	cout << "Игрок: " << player1->name << " выберите козырь:" << endl;
+	cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m выберите козырь!\n*(b, c, p, k):  ";
 	cin >> mast;
 	if (mast == "b") {
 		mMast = bubi;
 		system("cls");
-		return false;
+		return true;
 	}
 	else if (mast == "c") {
 		mMast = cervi;
@@ -189,7 +229,18 @@ bool Manager::mainMast() {
 	}	
 	else {
 		system("cls");
-		cout << "неверная масть!\n";
+		cout << "*Такой масти нет!\n";
 		return false;
+	}
+}
+
+bool Manager::choseFirstPlayer() {
+	while (true) {
+		changePlayer();
+		for (int i = 0; i < currentPlayer->hand.size(); i++) {
+			if (currentPlayer->hand[i].card == bA) {
+				return true;
+			}
+		}	
 	}
 }
