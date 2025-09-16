@@ -3,6 +3,7 @@
 #include "Player.h"
 #include "HumanPlayer.h"
 #include "ComputerPlayer.h"
+#include "Mode.h"
 
 #include <iostream>
 #include <string>
@@ -24,14 +25,17 @@ private:
 	Player* player4;
 
 	
-
+	string hod;
 	Cards lastCard = ukncard;
 	Mast mMast;
+	Mode mode = Start;
 	
 public:
 	Manager(UINT originalCP) { this->originalCP = originalCP; }
 	void initGame();
 	void makeMove();
+	void changePlayer();
+
 
 	void printCard(Cards card);
 	void printPack(Player* player);

@@ -140,6 +140,7 @@
     <ClInclude Include="ComputerPlayer.h" />
     <ClInclude Include="HumanPlayer.h" />
     <ClInclude Include="Manager.h" />
+    <ClInclude Include="Mode.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Table.h" />
   </ItemGroup>

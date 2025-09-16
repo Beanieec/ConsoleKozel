@@ -49,35 +49,67 @@ void Manager::initGame() {
 	currentPlayer = player1;
 
 	system("pause");
-	system("cls");
+	system("cls");	
 
-	while(mainMast());
-	
 	while (!player4->hand.empty()) {
+		
 		makeMove();
+		/*for (int i = 0; i < table.pack.size(); i++) {
+			printCard(table.pack[i]);
+		}*/	
 	}
 }
 
 void Manager::makeMove() {
 	
-	cout << "*********"; printMast(mMast); cout << "*********|"; printCard(lastCard); cout << "|********"; printMast(mMast); cout << "********\n";
-	cout << "Игрок: " << currentPlayer->name << " Ходи!\n";
-	printPack(currentPlayer);
-	string hod;
-	cout << "Ход: ";
-	cin >> hod;
-	
-	if (currentPlayer->makeMove(hod, lastCard)) {
-		table.pack.push_back(lastCard);		
-	}
-	else
+	switch (mode)
 	{
-		system("cls");
-		cout << "Неверный ход!\n\n";
-		return;
-	}
-	cout << "\n\n";
+	case Start:
+		if(mainMast())
+			mode = Game;
+		/*for (int i = 0; i < hand.size(); i++) {
+			if (hand[i].mast == mMast) {
+				hand[i].isMain = true;
+			}
+		}*/
+		break;
+	case Game:
+		cout << "\n********["; printMast(mMast); cout << "]********|"; printCard(lastCard); cout << "|*******["; printMast(mMast); cout << "]*******\n";
+		cout << "Игрок: " << currentPlayer->name << " Ходи!\n";
+		printPack(currentPlayer);
+		
+		cout << "Ход: ";
+		cin >> hod;
 
+		if (currentPlayer->makeMove(hod, lastCard)) {
+			table.pack.push_back(lastCard);
+		}
+		else
+		{
+			system("cls");
+			cout << "  *Неверный ход!*\n";
+			return;
+		}
+		cout << "\n\n";
+
+		changePlayer();
+		break;
+	case ChoseDeal:
+		break;
+	case ChoseMain:
+		break;
+	}
+
+
+
+	
+	
+	
+
+	
+}
+
+void Manager::changePlayer() {
 	if (currentPlayer == player1) {
 		currentPlayer = player2;
 	}
@@ -119,13 +151,13 @@ void Manager::printMast(Mast mast) {
 		cout << "\033[31m\x04\x04\x04\033[0m";
 		break;
 	case cervi:
-		cout << "A\033[31m\x03\x03\x03\033[0m";
+		cout << "\033[31m\x03\x03\x03\033[0m";
 		break;
 	case piki:
-		cout << "A\033[30m\x06\x06\x06\033[0m";
+		cout << "\033[30m\x06\x06\x06\033[0m";
 		break;
 	case kresti:
-		cout << "A\033[30m\x05\x05\x05\033[0m";
+		cout << "\033[30m\x05\x05\x05\033[0m";
 		break;
 	}
 	SetConsoleOutputCP(1251);
@@ -137,23 +169,27 @@ bool Manager::mainMast() {
 	cin >> mast;
 	if (mast == "b") {
 		mMast = bubi;
+		system("cls");
 		return false;
 	}
 	else if (mast == "c") {
 		mMast = cervi;
-		return false;
+		system("cls");
+		return true;
 	}	
 	else if (mast == "p") {
 		mMast = piki;
-		return false;
+		system("cls");
+		return true;
 	}
 	else if (mast == "k") {
 		mMast = kresti;
-		return false;
+		system("cls");
+		return true;
 	}	
 	else {
+		system("cls");
 		cout << "неверная масть!\n";
-		return true;
+		return false;
 	}
-		
 }
