@@ -100,6 +100,11 @@ void Manager::makeMove() {
 		cout << "\n";
 
 		changePlayer();
+
+		if (getWinDeal()) {
+			mode = ChoseDeal;
+		}
+
 		break;
 	case ChoseDeal:
 		//хвалёнки сам делай
@@ -110,6 +115,32 @@ void Manager::makeMove() {
 			mode = ChoseDeal;
 		break;
 	}	
+}
+
+bool Manager::getWinDeal() {
+	if (player1->hand.empty() && player2->hand.empty() && player3->hand.empty() && player4->hand.empty()) {
+		if (scoreT1 > 90) {
+			endScoreT2 += 4;
+			return true;
+		}
+		else if (scoreT1 > 60) {
+			endScoreT2 += 2;
+			return true;
+		}
+		if (scoreT2 > 90) {
+			endScoreT1 += 4;
+			return true;
+		}
+		else if (scoreT2 > 60) {
+			endScoreT1 += 2;
+			return true;
+		}
+		if (scoreT1 == scoreT2) {
+			isWasEggs = true;
+			return true;
+		}
+	}
+	return false;
 }
 
 bool Manager::checkAndCodition() {
@@ -125,7 +156,7 @@ bool Manager::checkAndCodition() {
 			}
 		}
 		else if (lastCard.mast == mMast) { // козыри
-			if (lastCard.level > winCard.level) {
+			if (lastCard.level > winCard.level) { //неправильный алгоритм
 				winCard = lastCard;
 				winPlayer = currentPlayer;
 			}
@@ -137,10 +168,18 @@ bool Manager::checkAndCodition() {
 	}
 	if (stepCounter == 4) {
 		system("cls");
-		cout << "*Игрок: \033[40m" << winPlayer->name << "\033[0m забрал раздачу на " << realScore << " очк(а/ов)!\n";
+		cout << "*Игрок: \033[40m" << winPlayer->name << "\033[0m забрал раздачу на " << realScore << " очко(а/ов)!\n";
+		printCard(winCard);
+		cout << endl;
+		if (winPlayer == player1 || winPlayer == player3)
+			scoreT1 += realScore;
+		else
+			scoreT2 += realScore;
 		currentPlayer = winPlayer;
 		stepCounter = 0;
 		realScore = 0;
+		lastCard = ukncard;
+		winCard = ukncard;
 		return true;
 	}
 	return false;
@@ -162,11 +201,21 @@ void Manager::changePlayer() {
 }
 
 void Manager::printInfo() {
-	cout << "********[" << scoreT1 << "]********"; printMast(mMast); cout << "|"; printCard(lastCard); cout << "|"; printMast(mMast); cout << "*******[" << scoreT2 << "]*******\n";
+	cout << "********[";
+	if (scoreT1 < 10)
+		cout << "0";
+	cout << scoreT1 << "]********"; 
+	printMast(mMast); 
+	cout << "|"; printCard(lastCard); cout << "|"; 
+	printMast(mMast); 
+	cout << "*******[";
+	if (scoreT2 < 10)
+		cout << "0";
+	cout << scoreT2 << "]*******\n";
 }
 
 void Manager::printPack(Player* player) {
-	cout << "--------------------------------------------\n";
+	cout << "---------------------------------------------\n";
 	cout << " | ";
 	for (int i = 0; i < player->hand.size(); i++) {
 		SetConsoleOutputCP(originalCP);
@@ -174,7 +223,7 @@ void Manager::printPack(Player* player) {
 		SetConsoleOutputCP(1251);
 		cout << " | ";
 	}
-	cout << "\n--------------------------------------------\n";
+	cout << "\n---------------------------------------------\n";
 }
 
 void Manager::printCard(Cards card) {

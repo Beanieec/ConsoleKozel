@@ -62,4 +62,5 @@ private:
 	void initc6();
 	void initp6();
 	void initk6();
+	void initukncard();
 };

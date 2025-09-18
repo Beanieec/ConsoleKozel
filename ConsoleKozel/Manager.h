@@ -26,6 +26,7 @@ private:
 
 	Player* winPlayer;
 	
+	
 	Cards lastCard = ukncard;
 	Cards winCard = ukncard;
 	
@@ -36,8 +37,14 @@ private:
 
 	int stepCounter = 0;
 	int realScore = 0;
-	int scoreT1 = 31;
-	int scoreT2 = 00;
+	int scoreT1 = 0;
+	int scoreT2 = 0;
+	int endScoreT1 = 0;
+	int endScoreT2 = 0;
+
+	//флаги
+	bool isWasEggs = false;
+
 public:
 	Manager(UINT originalCP) { this->originalCP = originalCP; }
 	void initGame();
@@ -47,6 +54,7 @@ private:
 	bool checkAndCodition();
 	void changePlayer();
 	bool choseFirstPlayer();
+	bool getWinDeal();
 
 	bool choseMainMast();
 

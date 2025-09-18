@@ -100,6 +100,7 @@ Cards::Cards(CardsType card) {
 		initk6();
 		break;
 	case ukncard:
+		initukncard();
 		break;
 	}
 }
@@ -360,4 +361,11 @@ void Cards::initk6() {
 	this->hod = "k6";
 	this->mast = kresti;
 	this->level = 24;
+}
+
+void Cards::initukncard() {
+	this->card = ukncard;
+	this->point = 0;
+	this->view = "\x01\x02";
+	this->level = -1;
 }
