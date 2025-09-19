@@ -32,6 +32,7 @@ private:
 	
 	string hod;
 	Mast mMast;
+	Mast gameMast;
 	Mode mode = Start;
 	
 

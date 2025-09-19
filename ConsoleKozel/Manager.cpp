@@ -143,25 +143,34 @@ bool Manager::getWinDeal() {
 	return false;
 }
 
-bool Manager::checkAndCodition() {
+bool Manager::checkAndCodition() { //не давать выграть при другой масти
 	stepCounter++;
+	if (stepCounter == 1) {
+		gameMast = lastCard.mast;
+	}
 	if (stepCounter <= 4) {
 		realScore += lastCard.point;
 
 
-		if (lastCard.level > 16) { // J Q
+		if (lastCard.level >= 16) { // J Q
 			if (lastCard.level > winCard.level) {
 				winCard = lastCard;
 				winPlayer = currentPlayer;
 			}
 		}
-		else if (lastCard.mast == mMast) { // козыри
-			if (lastCard.level > winCard.level) { //неправильный алгоритм
+		else if (lastCard.mast == mMast && winCard.level < 16) { // козыри
+			if (winCard.mast == mMast) {
+				if (lastCard.level > winCard.level) { 
+					winCard = lastCard;
+					winPlayer = currentPlayer;
+				}
+			}
+			else {
 				winCard = lastCard;
 				winPlayer = currentPlayer;
 			}
 		}
-		else if (lastCard.level > winCard.level) { // остальные
+		else if (lastCard.level > winCard.level && winCard.level < 16 && winCard.mast != mMast && lastCard.mast == gameMast) { // остальные
 			winCard = lastCard;
 			winPlayer = currentPlayer;
 		}
