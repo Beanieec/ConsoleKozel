@@ -20,7 +20,9 @@ public:
 
 public:
 	void packShuffle();
+	void clearHand(Player* player);
 	void givingCards(Player* player);
+	void giveFourCards(Player* player);
 
 };
 

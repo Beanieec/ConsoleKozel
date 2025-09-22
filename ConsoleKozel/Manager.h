@@ -24,7 +24,11 @@ private:
 	Player* player3;
 	Player* player4;
 
+	Player* dealChooser;
 	Player* winPlayer;
+
+	Player* shahaPlayer;
+	Player* qPlayer;
 	
 	
 	Cards lastCard = ukncard;
@@ -44,7 +48,9 @@ private:
 	int endScoreT2 = 0;
 
 	//флаги
-	bool isWasEggs = false;
+	int Eggs = 0;
+	bool shaha = false;
+	bool Q = false;
 
 public:
 	Manager(UINT originalCP) { this->originalCP = originalCP; }
@@ -53,9 +59,13 @@ public:
 private:
 	void makeMove();
 	bool checkAndCodition();
+	bool findShaha();
 	void changePlayer();
+	void changeDealChooser();
 	bool choseFirstPlayer();
 	bool getWinDeal();
+
+	void choseDeal(int deal);
 
 	bool choseMainMast();
 
@@ -63,6 +73,7 @@ private:
 	void printCard(Cards card);
 	void printPack(Player* player);
 	void printMast(Mast mast);
+	void defValue();
 	
 	
 };

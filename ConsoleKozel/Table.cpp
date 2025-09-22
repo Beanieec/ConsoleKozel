@@ -18,11 +18,23 @@ void Table::packShuffle() {
     shuffle(pack.begin(), pack.end(), mt19937(rand()));
 }
 
+void Table::clearHand(Player* player) {
+    while(!player->hand.empty()) {
+        pack.push_back(player->hand.back());
+        player->hand.pop_back();
+    }
+}
+
 void Table::givingCards(Player* player) {
-    Cards card(ukncard);
     for (int i = 0; i < 8; i++) {
-        card = pack.back();
-        player->hand.push_back(card);
+        player->hand.push_back(pack.back());
+        pack.pop_back();
+    }
+}
+
+void Table::giveFourCards(Player* player) {
+    for (int i = 0; i < 8; i++) {
+        player->hand.push_back(pack.back());
         pack.pop_back();
     }
 }

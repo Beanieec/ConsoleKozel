@@ -87,6 +87,11 @@ void Manager::makeMove() {
 		if (currentPlayer->makeMove(hod, lastCard, mMast)) {
 			
 			table.pack.push_back(lastCard);
+			if (findShaha()) {
+				mode = ChoseDeal;
+				return;
+			}
+		
 			if (checkAndCodition()) {
 				return;
 			}
@@ -107,12 +112,16 @@ void Manager::makeMove() {
 
 		break;
 	case ChoseDeal:
-		//хвалёнки сам делай
-		mode = Game;
+		changeDealChooser();
+		int deal;
+		cout << "Выберите хвалёнку\n";
+		cin >> deal;
+		choseDeal(deal);
+		mode = ChoseMain;
 		break;
 	case ChoseMain:
 		if (choseMainMast())
-			mode = ChoseDeal;
+			mode = Game;
 		break;
 	}	
 }
@@ -120,30 +129,34 @@ void Manager::makeMove() {
 bool Manager::getWinDeal() {
 	if (player1->hand.empty() && player2->hand.empty() && player3->hand.empty() && player4->hand.empty()) {
 		if (scoreT1 > 90) {
-			endScoreT2 += 4;
+			endScoreT2 += 4 + Eggs;
+			Eggs = 0;
 			return true;
 		}
 		else if (scoreT1 > 60) {
-			endScoreT2 += 2;
+			endScoreT2 += 2 + Eggs;
+			Eggs = 0;
 			return true;
 		}
 		if (scoreT2 > 90) {
-			endScoreT1 += 4;
+			endScoreT1 += 4 + Eggs;
+			Eggs = 0;
 			return true;
 		}
 		else if (scoreT2 > 60) {
-			endScoreT1 += 2;
+			endScoreT1 += 2 + Eggs;
+			Eggs = 0;
 			return true;
 		}
-		if (scoreT1 == scoreT2) {
-			isWasEggs = true;
+		if (scoreT1 == scoreT2) { //Яйца
+			Eggs = 2;
 			return true;
 		}
 	}
 	return false;
 }
 
-bool Manager::checkAndCodition() { //не давать выграть при другой масти
+bool Manager::checkAndCodition() {
 	stepCounter++;
 	if (stepCounter == 1) {
 		gameMast = lastCard.mast;
@@ -185,10 +198,7 @@ bool Manager::checkAndCodition() { //не давать выграть при другой масти
 		else
 			scoreT2 += realScore;
 		currentPlayer = winPlayer;
-		stepCounter = 0;
-		realScore = 0;
-		lastCard = ukncard;
-		winCard = ukncard;
+		defValue();
 		return true;
 	}
 	return false;
@@ -209,8 +219,26 @@ void Manager::changePlayer() {
 	}
 }
 
+void Manager::changeDealChooser() {
+	if (dealChooser == player1) {
+		currentPlayer = player2;
+	}
+	else if (dealChooser == player2) {
+		currentPlayer = player3;
+	}
+	else if (dealChooser == player3) {
+		currentPlayer = player4;
+	}
+	else {
+		currentPlayer = player1;
+	}
+}
+
 void Manager::printInfo() {
-	cout << "********[";
+	cout << "*{";
+	if (endScoreT1 < 10)
+		cout << "0";
+	cout << endScoreT1 << "}***[";
 	if (scoreT1 < 10)
 		cout << "0";
 	cout << scoreT1 << "]********"; 
@@ -220,7 +248,10 @@ void Manager::printInfo() {
 	cout << "*******[";
 	if (scoreT2 < 10)
 		cout << "0";
-	cout << scoreT2 << "]*******\n";
+	cout << scoreT2 << "]***{";
+	if (endScoreT1 < 10)
+		cout << "0";
+	cout << scoreT2 << "}*\n";
 }
 
 void Manager::printPack(Player* player) {
@@ -297,8 +328,74 @@ bool Manager::choseFirstPlayer() {
 		changePlayer();
 		for (int i = 0; i < currentPlayer->hand.size(); i++) {
 			if (currentPlayer->hand[i].card == bA) {
+				dealChooser = currentPlayer;
 				return true;
 			}
 		}	
 	}
+}
+
+void Manager::choseDeal(int deal) {
+	switch (deal) {
+	case 1:
+		table.packShuffle();
+		table.givingCards(player1);
+		table.givingCards(player2);
+		table.givingCards(player3);
+		table.givingCards(player4);
+		break;
+	case 2:
+		table.giveFourCards(player1);
+		table.giveFourCards(player2);
+		table.giveFourCards(player3);
+		table.giveFourCards(player4);
+		break;
+	}
+		
+
+}
+
+bool Manager::findShaha() {
+	
+	if (lastCard.card == k6) {
+		shaha = true;
+		shahaPlayer = currentPlayer;
+	}
+	if (lastCard.card == kQ) {
+		Q = true;
+		qPlayer = currentPlayer;
+	}
+	if (shaha && Q) {
+		if ((shahaPlayer == player1 && qPlayer == player3) || (shahaPlayer == player3 && qPlayer == player1)) {
+			return false;
+		}
+		if ((shahaPlayer == player2 && qPlayer == player4) || (shahaPlayer == player4 && qPlayer == player2)) {
+			return false;
+		}
+		table.clearHand(player1);
+		table.clearHand(player2);
+		table.clearHand(player3);
+		table.clearHand(player4);
+		winPlayer = shahaPlayer;
+
+		if (winPlayer == player1 || winPlayer == player3)
+			endScoreT1 += 4;
+		else
+			endScoreT2 += 4;
+
+		cout << winPlayer->name << " поймал даму крести!\n";
+		
+		defValue();
+		return true;
+	}	
+	return false;
+}
+
+void Manager::defValue() {
+	stepCounter = 0;
+	realScore = 0;
+	lastCard = ukncard;
+	winCard = ukncard;
+	shaha = false;
+	Q = false;
 }
