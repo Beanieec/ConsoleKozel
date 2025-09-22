@@ -19,6 +19,12 @@
     <Filter Include="Player\headers">
       <UniqueIdentifier>{2f6471ab-05ee-4aad-a9fe-b7567a826752}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Online">
+      <UniqueIdentifier>{2b97dbb2-f253-45ea-a068-af8c76bf3a0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Online\headers">
+      <UniqueIdentifier>{e8c33bca-82c1-466c-bfec-54123907ebed}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleKozel.cpp">
@@ -42,6 +48,12 @@
     <ClCompile Include="Cards.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Out.cpp">
+      <Filter>Online</Filter>
+    </ClCompile>
+    <ClCompile Include="In.cpp">
+      <Filter>Online</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cards.h">
@@ -64,6 +76,12 @@
     </ClInclude>
     <ClInclude Include="Mode.h">
       <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Out.h">
+      <Filter>Online\headers</Filter>
+    </ClInclude>
+    <ClInclude Include="In.h">
+      <Filter>Online\headers</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

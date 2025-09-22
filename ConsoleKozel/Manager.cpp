@@ -85,7 +85,8 @@ void Manager::makeMove() {
 		cin >> hod;
 
 		if (currentPlayer->makeMove(hod, lastCard, mMast)) {
-			
+			string mes = currentPlayer->name + ": " + lastCard.hod;
+			botOuter.outMes(mes);
 			table.pack.push_back(lastCard);
 			if (findShaha()) {
 				mode = ChoseDeal;
@@ -128,7 +129,7 @@ void Manager::makeMove() {
 
 bool Manager::getWinDeal() {
 	if (player1->hand.empty() && player2->hand.empty() && player3->hand.empty() && player4->hand.empty()) {
-		if (scoreT1 > 90) {
+		if (scoreT1 >= 90) {
 			endScoreT2 += 4 + Eggs;
 			Eggs = 0;
 			return true;
@@ -138,7 +139,7 @@ bool Manager::getWinDeal() {
 			Eggs = 0;
 			return true;
 		}
-		if (scoreT2 > 90) {
+		if (scoreT2 >= 90) {
 			endScoreT1 += 4 + Eggs;
 			Eggs = 0;
 			return true;
@@ -241,7 +242,7 @@ void Manager::printInfo() {
 	cout << endScoreT1 << "}***[";
 	if (scoreT1 < 10)
 		cout << "0";
-	cout << scoreT1 << "]********"; 
+	cout << scoreT1 << "]*******"; 
 	printMast(mMast); 
 	cout << "|"; printCard(lastCard); cout << "|"; 
 	printMast(mMast); 
@@ -251,7 +252,7 @@ void Manager::printInfo() {
 	cout << scoreT2 << "]***{";
 	if (endScoreT1 < 10)
 		cout << "0";
-	cout << scoreT2 << "}*\n";
+	cout << endScoreT2 << "}*\n";
 }
 
 void Manager::printPack(Player* player) {

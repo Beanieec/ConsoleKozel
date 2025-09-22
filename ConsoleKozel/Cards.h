@@ -1,8 +1,6 @@
 #pragma once
 #include <string>
 
-using namespace std;
-
 enum CardsType {
 	bA, cA, pA, kA,
 	b10, c10, p10, k10,
@@ -23,8 +21,8 @@ class Cards {
 public:
 	CardsType card;
 	int point;
-	string view;
-	string hod;
+	std::string view;
+	std::string hod;
 	Mast mast;
 	int level;
 	Cards(CardsType card);

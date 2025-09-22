@@ -7,16 +7,15 @@
 #include <ctime>
 #include <vector>
 #include <string>
-#include <Windows.h>
 
-using namespace std;
+
 
 class Table
 {
 private:
 public:
 	Table();
-	vector<Cards> pack;
+	std::vector<Cards> pack;
 
 public:
 	void packShuffle();

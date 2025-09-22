@@ -1,20 +1,29 @@
+#define WIN32_LEAN_AND_MEAN
+#define NOBYTE
+#include <windows.h>
 #pragma once
 #include "Table.h"
 #include "Player.h"
 #include "HumanPlayer.h"
 #include "ComputerPlayer.h"
 #include "Mode.h"
+#include "Out.h"
 
 #include <iostream>
 #include <string>
 
+
+
 using namespace std;
+
 
 class Manager
 {
 
 private:
 	UINT originalCP;
+
+	Out botOuter;
 
 	Table table;
 
