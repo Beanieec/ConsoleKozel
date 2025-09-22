@@ -1,13 +1,13 @@
-#include "Manager.h"
+ï»¿#include "Manager.h"
 
 
 void Manager::initGame() {
 	string name;
-	cout << "               *Ïðèâåòñâóþ âàñ!*\n" 
-			"       *Âû ïîïàëè â ñàìóþ ëó÷øóþ â ìèðå*\n"
-			"            *âåðñèþ êàðòî÷íîé èãðû*\n"
-			"                 ***ÊÎÇ¨Ë***\n\n"
-			"*Ââåäèòå èìÿ 1-ãî èãðîêà 1-îé êîìàíäû:\n* ";
+	cout << "               *ÐŸÑ€Ð¸Ð²ÐµÑ‚ÑÐ²ÑƒÑŽ Ð²Ð°Ñ!*\n" 
+			"       *Ð’Ñ‹ Ð¿Ð¾Ð¿Ð°Ð»Ð¸ Ð² ÑÐ°Ð¼ÑƒÑŽ Ð»ÑƒÑ‡ÑˆÑƒÑŽ Ð² Ð¼Ð¸Ñ€Ðµ*\n"
+			"            *Ð²ÐµÑ€ÑÐ¸ÑŽ ÐºÐ°Ñ€Ñ‚Ð¾Ñ‡Ð½Ð¾Ð¹ Ð¸Ð³Ñ€Ñ‹*\n"
+			"                 ***ÐšÐžÐ—ÐÐ›***\n\n"
+			"*Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð¼Ñ 1-Ð³Ð¾ Ð¸Ð³Ñ€Ð¾ÐºÐ° 1-Ð¾Ð¹ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹:\n* ";
 	
 	cout << "\033[40m";
 	getline(cin, name);
@@ -15,7 +15,7 @@ void Manager::initGame() {
 	player1 = new HumanPlayer(name);
 	table.givingCards(player1);
 	
-	cout << "\n*Ââåäèòå èìÿ 2-ãî èãðîêà 1-îé êîìàíäû:\n* ";
+	cout << "\n*Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð¼Ñ 2-Ð³Ð¾ Ð¸Ð³Ñ€Ð¾ÐºÐ° 1-Ð¾Ð¹ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹:\n* ";
 	
 	cout << "\033[40m";
 	getline(cin, name);
@@ -23,7 +23,7 @@ void Manager::initGame() {
 	player3 = new HumanPlayer(name);
 	table.givingCards(player3);
 
-	cout << "\n*Ââåäèòå èìÿ 1-ãî èãðîêà 2-îé êîìàíäû:\n* ";
+	cout << "\n*Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð¼Ñ 1-Ð³Ð¾ Ð¸Ð³Ñ€Ð¾ÐºÐ° 2-Ð¾Ð¹ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹:\n* ";
 
 	cout << "\033[40m";
 	getline(cin, name);
@@ -31,7 +31,7 @@ void Manager::initGame() {
 	player2 = new HumanPlayer(name);
 	table.givingCards(player2);
 
-	cout << "\n*Ââåäèòå èìÿ 2-ãî èãðîêà 2-îé êîìàíäû:\n* ";
+	cout << "\n*Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ Ð¸Ð¼Ñ 2-Ð³Ð¾ Ð¸Ð³Ñ€Ð¾ÐºÐ° 2-Ð¾Ð¹ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹:\n* ";
 	
 	cout << "\033[40m";
 	getline(cin, name);
@@ -54,20 +54,20 @@ void Manager::makeMove() {
 	switch (mode)
 	{
 	case Start:
-		cout << "  *Èãðîê: \033[40m" << player1->name << "\033[0m\n";
+		cout << "  *Ð˜Ð³Ñ€Ð¾Ðº: \033[40m" << player1->name << "\033[0m\n";
 		printPack(player1);
 
-		cout << endl << endl << "  *Èãðîê: \033[40m" << player2->name << "\033[0m\n";
+		cout << endl << endl << "  *Ð˜Ð³Ñ€Ð¾Ðº: \033[40m" << player2->name << "\033[0m\n";
 		printPack(player2);
 
-		cout << endl << endl << "  *Èãðîê: \033[40m" << player3->name << "\033[0m\n";
+		cout << endl << endl << "  *Ð˜Ð³Ñ€Ð¾Ðº: \033[40m" << player3->name << "\033[0m\n";
 		printPack(player3);
 
-		cout << endl << endl << "  *Èãðîê: \033[40m" << player4->name << "\033[0m\n";
+		cout << endl << endl << "  *Ð˜Ð³Ñ€Ð¾Ðº: \033[40m" << player4->name << "\033[0m\n";
 		printPack(player4);
 
-		cout << "                *Ïîäñêàçêà!*\n";
-		cout << "  *×åðâè: c, Ïèêè: p, Áóáè: b, Êðåñòè: k*\n  *Íîìèíàëû: 6, 8, 9, 10, J, Q, K, A*\n  *Õîä èìååò âèä:*\n  *k10 - 10 êðåñòè,*\n  *bA - òóç áóáè*\n";
+		cout << "                *ÐŸÐ¾Ð´ÑÐºÐ°Ð·ÐºÐ°!*\n";
+		cout << "  *Ð§ÐµÑ€Ð²Ð¸: c, ÐŸÐ¸ÐºÐ¸: p, Ð‘ÑƒÐ±Ð¸: b, ÐšÑ€ÐµÑÑ‚Ð¸: k*\n  *ÐÐ¾Ð¼Ð¸Ð½Ð°Ð»Ñ‹: 6, 8, 9, 10, J, Q, K, A*\n  *Ð¥Ð¾Ð´ Ð¸Ð¼ÐµÐµÑ‚ Ð²Ð¸Ð´:*\n  *k10 - 10 ÐºÑ€ÐµÑÑ‚Ð¸,*\n  *bA - Ñ‚ÑƒÐ· Ð±ÑƒÐ±Ð¸*\n";
 		
 		choseFirstPlayer();
 
@@ -78,15 +78,16 @@ void Manager::makeMove() {
 		break;
 	case Game:
 		printInfo();
-		cout << "*Èãðîê: \033[40m" << currentPlayer->name << "\033[0m Õîäè!\n";
+		cout << "*Ð˜Ð³Ñ€Ð¾Ðº: \033[40m" << currentPlayer->name << "\033[0m Ð¥Ð¾Ð´Ð¸!\n";
 		printPack(currentPlayer);
 		
-		cout << "*Õîä: ";
+		cout << "*Ð¥Ð¾Ð´: ";
 		cin >> hod;
 
 		if (currentPlayer->makeMove(hod, lastCard, mMast)) {
-			string mes = currentPlayer->name + ": " + lastCard.hod;
-			botOuter.outMes(mes);
+			
+			botOuter.outMes(currentPlayer->name + ":" + lastCard.hod);
+
 			table.pack.push_back(lastCard);
 			if (findShaha()) {
 				mode = ChoseDeal;
@@ -94,28 +95,26 @@ void Manager::makeMove() {
 			}
 		
 			if (checkAndCodition()) {
+				if (getWinDeal()) {
+					mode = ChoseDeal;
+				}
 				return;
 			}
 		}
 		else
 		{
 			system("cls");
-			cout << "  *Íåâåðíûé õîä!*\n\n";
+			cout << "  *ÐÐµÐ²ÐµÑ€Ð½Ñ‹Ð¹ Ñ…Ð¾Ð´!*\n\n";
 			return;
 		}
 		cout << "\n";
 
 		changePlayer();
-
-		if (getWinDeal()) {
-			mode = ChoseDeal;
-		}
-
 		break;
 	case ChoseDeal:
 		changeDealChooser();
 		int deal;
-		cout << "Âûáåðèòå õâàë¸íêó\n";
+		cout << "Ð’Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ Ñ…Ð²Ð°Ð»Ñ‘Ð½ÐºÑƒ\n";
 		cin >> deal;
 		choseDeal(deal);
 		mode = ChoseMain;
@@ -132,30 +131,42 @@ bool Manager::getWinDeal() {
 		if (scoreT1 >= 90) {
 			endScoreT2 += 4 + Eggs;
 			Eggs = 0;
+			scoreT1 = 0;
+			scoreT2 = 0;
 			return true;
 		}
 		else if (scoreT1 > 60) {
 			endScoreT2 += 2 + Eggs;
 			Eggs = 0;
+			scoreT1 = 0;
+			scoreT2 = 0;
 			return true;
 		}
 		if (scoreT2 >= 90) {
 			endScoreT1 += 4 + Eggs;
 			Eggs = 0;
+			scoreT1 = 0;
+			scoreT2 = 0;
 			return true;
 		}
 		else if (scoreT2 > 60) {
 			endScoreT1 += 2 + Eggs;
 			Eggs = 0;
+			scoreT1 = 0;
+			scoreT2 = 0;
 			return true;
 		}
-		if (scoreT1 == scoreT2) { //ßéöà
+		if (scoreT1 == scoreT2) { //Ð¯Ð¹Ñ†Ð°
 			Eggs = 2;
+			scoreT1 = 0;
+			scoreT2 = 0;
 			return true;
 		}
+		
 	}
 	return false;
 }
+
 
 bool Manager::checkAndCodition() {
 	stepCounter++;
@@ -172,7 +183,7 @@ bool Manager::checkAndCodition() {
 				winPlayer = currentPlayer;
 			}
 		}
-		else if (lastCard.mast == mMast && winCard.level < 16) { // êîçûðè
+		else if (lastCard.mast == mMast && winCard.level < 16) { // ÐºÐ¾Ð·Ñ‹Ñ€Ð¸
 			if (winCard.mast == mMast) {
 				if (lastCard.level > winCard.level) { 
 					winCard = lastCard;
@@ -184,14 +195,14 @@ bool Manager::checkAndCodition() {
 				winPlayer = currentPlayer;
 			}
 		}
-		else if (lastCard.level > winCard.level && winCard.level < 16 && winCard.mast != mMast && lastCard.mast == gameMast) { // îñòàëüíûå
+		else if (lastCard.level > winCard.level && winCard.level < 16 && winCard.mast != mMast && lastCard.mast == gameMast) { // Ð¾ÑÑ‚Ð°Ð»ÑŒÐ½Ñ‹Ðµ
 			winCard = lastCard;
 			winPlayer = currentPlayer;
 		}
 	}
 	if (stepCounter == 4) {
 		system("cls");
-		cout << "*Èãðîê: \033[40m" << winPlayer->name << "\033[0m çàáðàë ðàçäà÷ó íà " << realScore << " î÷êî(à/îâ)!\n";
+		cout << "*Ð˜Ð³Ñ€Ð¾Ðº: \033[40m" << winPlayer->name << "\033[0m Ð·Ð°Ð±Ñ€Ð°Ð» Ñ€Ð°Ð·Ð´Ð°Ñ‡Ñƒ Ð½Ð° " << realScore << " Ð¾Ñ‡ÐºÐ¾(Ð°/Ð¾Ð²)!\n";
 		printCard(winCard);
 		cout << endl;
 		if (winPlayer == player1 || winPlayer == player3)
@@ -295,31 +306,36 @@ void Manager::printMast(Mast mast) {
 
 bool Manager::choseMainMast() {
 	string mast;
-	cout << "*Èãðîê: \033[40m" << currentPlayer->name << "\033[0m âûáåðèòå êîçûðü!\n*(b, c, p, k):  ";
+	cout << "*Ð˜Ð³Ñ€Ð¾Ðº: \033[40m" << currentPlayer->name << "\033[0m Ð²Ñ‹Ð±ÐµÑ€Ð¸Ñ‚Ðµ ÐºÐ¾Ð·Ñ‹Ñ€ÑŒ!\n*(b, c, p, k):  ";
 	cin >> mast;
+	
 	if (mast == "b") {
 		mMast = bubi;
+		botOuter.outMes("mMast:bubi");
 		system("cls");
 		return true;
 	}
 	else if (mast == "c") {
 		mMast = cervi;
+		botOuter.outMes("mMast:cervi");
 		system("cls");
 		return true;
 	}	
 	else if (mast == "p") {
 		mMast = piki;
+		botOuter.outMes("mMast:piki");
 		system("cls");
 		return true;
 	}
 	else if (mast == "k") {
 		mMast = kresti;
+		botOuter.outMes("mMast:kresti");
 		system("cls");
 		return true;
 	}	
 	else {
 		system("cls");
-		cout << "*Òàêîé ìàñòè íåò!\n";
+		cout << "*Ð¢Ð°ÐºÐ¾Ð¹ Ð¼Ð°ÑÑ‚Ð¸ Ð½ÐµÑ‚!\n";
 		return false;
 	}
 }
@@ -384,7 +400,7 @@ bool Manager::findShaha() {
 		else
 			endScoreT2 += 4;
 
-		cout << winPlayer->name << " ïîéìàë äàìó êðåñòè!\n";
+		cout << winPlayer->name << " Ð¿Ð¾Ð¹Ð¼Ð°Ð» Ð´Ð°Ð¼Ñƒ ÐºÑ€ÐµÑÑ‚Ð¸!\n";
 		
 		defValue();
 		return true;
