@@ -402,7 +402,8 @@ bool Manager::findShaha() {
 			endScoreT2 += 4;
 
 		cout << winPlayer->name << " поймал даму крести!\n";
-		
+		scoreT1 = 0;
+		scoreT2 = 0;
 		defValue();
 		return true;
 	}	
