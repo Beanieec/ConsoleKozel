@@ -1,6 +1,6 @@
 #pragma once
 
 enum Mode {
-	Start, Game,
+	Start, First, bigTits,
 	ChoseDeal, ChoseMain
 };

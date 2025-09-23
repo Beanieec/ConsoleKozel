@@ -47,6 +47,7 @@ private:
 	Mast mMast;
 	Mast gameMast;
 	Mode mode = Start;
+	Mode deal = First;
 	
 
 	int stepCounter = 0;
@@ -55,6 +56,7 @@ private:
 	int scoreT2 = 0;
 	int endScoreT1 = 0;
 	int endScoreT2 = 0;
+	int countRounder = 0;
 
 	//флаги
 	int Eggs = 0;
@@ -75,6 +77,7 @@ private:
 	bool getWinDeal();
 
 	void choseDeal(int deal);
+	bool countRound(int count);
 
 	bool choseMainMast();
 

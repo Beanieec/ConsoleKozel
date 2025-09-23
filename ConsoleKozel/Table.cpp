@@ -32,8 +32,8 @@ void Table::givingCards(Player* player) {
     }
 }
 
-void Table::giveFourCards(Player* player) {
-    for (int i = 0; i < 8; i++) {
+void Table::givingBigTits(Player* player) {
+    for (int i = 0; i < 4; i++) {
         player->hand.push_back(pack.back());
         pack.pop_back();
     }

@@ -77,7 +77,7 @@ void Manager::makeMove() {
 
 		mode = ChoseMain;
 		break;
-	case Game:
+	case First:
 		printInfo();
 		cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m Ходи!\n";
 		printPack(currentPlayer);
@@ -112,19 +112,55 @@ void Manager::makeMove() {
 
 		changePlayer();
 		break;
+	case bigTits:
+		printInfo();
+		cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m Ходи!\n";
+		printPack(currentPlayer);
+
+		cout << "*Ход: ";
+		cin >> hod;
+
+		if (currentPlayer->makeMove(hod, lastCard, mMast)) {
+			if (findShaha()) {
+				mode = ChoseDeal;
+				return;
+			}
+			if (checkAndCodition()) {
+				if (countRound(4))
+				{
+					if (getWinDeal()) {
+
+						mode = ChoseDeal;
+					}
+					
+				}
+				return;
+			}
+		}
+		else
+		{
+			system("cls");
+			cout << "  *Неверный ход!*\n\n";
+			return;
+		}
+		cout << "\n";
+
+		changePlayer();
+		break;
+
 	case ChoseDeal:
 		changeDealChooser();
-		int deal;
+		int deals;
 		cout << "Выберите хвалёнку\n";
-		cin >> deal;
-		choseDeal(deal);
+		cin >> deals;
+		choseDeal(deals);
 		mode = ChoseMain;
 		break;
 	case ChoseMain:
 		if (choseMainMast())
-			mode = Game;
+			mode = deal;
 		break;
-	}	
+	}
 }
 
 bool Manager::getWinDeal() {
@@ -210,7 +246,9 @@ bool Manager::checkAndCodition() {
 			scoreT1 += realScore;
 		else
 			scoreT2 += realScore;
-		currentPlayer = winPlayer;
+		if (mode == First) {
+			currentPlayer = winPlayer;
+		}
 		defValue();
 		return true;
 	}
@@ -363,14 +401,14 @@ void Manager::choseDeal(int deal) {
 		table.givingCards(player4);
 		break;
 	case 2:
-		table.giveFourCards(player1);
-		table.giveFourCards(player2);
-		table.giveFourCards(player3);
-		table.giveFourCards(player4);
+		deal = bigTits;
+		table.packShuffle();
+		table.givingBigTits(player1);
+		table.givingBigTits(player2);
+		table.givingBigTits(player3);
+		table.givingBigTits(player4);
 		break;
 	}
-		
-
 }
 
 bool Manager::findShaha() {
@@ -417,4 +455,17 @@ void Manager::defValue() {
 	winCard = ukncard;
 	shaha = false;
 	Q = false;
+}
+bool Manager::countRound(int count)
+{
+	countRounder++;
+	if(countRounder == count)
+	{
+		table.givingBigTits(player1);
+		table.givingBigTits(player2);
+		table.givingBigTits(player3);
+		table.givingBigTits(player4);
+		return true;
+	}
+	return false;
 }
