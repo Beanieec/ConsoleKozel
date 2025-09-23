@@ -15,7 +15,8 @@ void Manager::initGame() {
 	player1 = new HumanPlayer(name);
 	table.givingCards(player1);
 	
-	cout << "\n*Введите имя 2-го игрока 1-ой команды:\n* ";
+	cout << "\n*Введите имя 2-го игрока 1-ой тимы:\n* ";
+	
 	
 	cout << "\033[40m";
 	getline(cin, name);
