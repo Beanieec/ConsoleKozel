@@ -20,7 +20,7 @@ using namespace std;
 class Manager
 {
 
-private:
+public:
 	UINT originalCP;
 
 	Out botOuter;
@@ -44,6 +44,7 @@ private:
 	Cards winCard = ukncard;
 	
 	string hod;
+	string mast;
 	Mast mMast;
 	Mast gameMast;
 	Mode mode = Start;
@@ -64,11 +65,10 @@ private:
 	bool Q = false;
 
 public:
-	Manager(UINT originalCP) { this->originalCP = originalCP; }
-	void initGame();
+	Manager(UINT originalCP) : originalCP(originalCP){}
+	virtual void initGame() = 0;
 	
-private:
-	void makeMove();
+	virtual void makeMove() = 0;
 	bool checkAndCodition();
 	bool findShaha();
 	void changePlayer();

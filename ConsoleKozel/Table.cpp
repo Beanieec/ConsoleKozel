@@ -25,11 +25,14 @@ void Table::clearHand(Player* player) {
     }
 }
 
-void Table::givingCards(Player* player) {
+string Table::givingCards(Player* player) {
+    string hpack;
     for (int i = 0; i < 8; i++) {
         player->hand.push_back(pack.back());
+        hpack += ":" + pack.back().hod;
         pack.pop_back();
     }
+    return hpack;
 }
 
 void Table::givingBigTits(Player* player) {

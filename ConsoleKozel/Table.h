@@ -20,7 +20,7 @@ public:
 public:
 	void packShuffle();
 	void clearHand(Player* player);
-	void givingCards(Player* player);
+	string givingCards(Player* player);
 	void givingBigTits(Player* player);
 
 };

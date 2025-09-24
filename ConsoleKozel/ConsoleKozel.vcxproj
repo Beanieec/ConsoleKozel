@@ -129,24 +129,31 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Cards.cpp" />
+    <ClCompile Include="ClientManager.cpp" />
     <ClCompile Include="ComputerPlayer.cpp" />
     <ClCompile Include="ConsoleKozel.cpp" />
+    <ClCompile Include="HostManager.cpp" />
     <ClCompile Include="HumanPlayer.cpp" />
     <ClCompile Include="In.cpp" />
     <ClCompile Include="Manager.cpp" />
     <ClCompile Include="Out.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="SingleManager.cpp" />
     <ClCompile Include="Table.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cards.h" />
+    <ClInclude Include="ClientManager.h" />
     <ClInclude Include="ComputerPlayer.h" />
+    <ClInclude Include="HostManager.h" />
     <ClInclude Include="HumanPlayer.h" />
     <ClInclude Include="In.h" />
     <ClInclude Include="Manager.h" />
     <ClInclude Include="Mode.h" />
     <ClInclude Include="Out.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="SingleManager.h" />
+    <ClInclude Include="SOMode.h" />
     <ClInclude Include="Table.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
