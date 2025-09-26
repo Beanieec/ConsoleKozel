@@ -29,11 +29,21 @@ string Table::givingCards(Player* player) {
     string hpack;
     for (int i = 0; i < 8; i++) {
         player->hand.push_back(pack.back());
-        hpack += ":" + pack.back().hod;
+        hpack += pack.back().hod + ":";
         pack.pop_back();
     }
     return hpack;
 }
+//
+//void Table::givingCards(string cards) {
+//    string hpack;
+//    for (int i = 0; i < 8; i++) {
+//        player->hand.push_back(pack.back());
+//        hpack += pack.back().hod + ":";
+//        pack.pop_back();
+//    }
+//    return hpack;
+//}
 
 void Table::givingBigTits(Player* player) {
     for (int i = 0; i < 4; i++) {

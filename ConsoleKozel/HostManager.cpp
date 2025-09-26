@@ -3,14 +3,11 @@
 
 void HostManager::initGame() {
 	string name;
-	cout << "               *Приветсвую вас!*\n"
-		"       *Вы попали в самую лучшую в мире*\n"
-		"            *версию карточной игры*\n"
-		"                 ***КОЗЁЛ***\n\n"
-		"*Введите имя 1-го игрока 1-ой команды:\n* ";
+
+	cout << "*Введите имя 1-го игрока 1-ой тимы:\n* ";
 
 	cout << "\033[40m";
-	cin.get();
+	cin.ignore();
 	getline(cin, name);
 	cout << "\033[0m";
 	player1 = new HumanPlayer(name);	
@@ -36,15 +33,12 @@ void HostManager::initGame() {
 	cout << "\033[0m";
 	player4 = new HumanPlayer(name);
 
-	online.outMes("p1:" + player1->name + table.givingCards(player1));
-		/*+
-		";\np2:" + player2->name + table.givingCards(player2) + 
-		";\np3:" + player3->name + table.givingCards(player3) + 
-		";\np4:" + player4->name + table.givingCards(player4));*/
+	online.outPlayer("p1", player1->name, table.givingCards(player1));
+	online.outPlayer("p2", player2->name, table.givingCards(player2));
+	online.outPlayer("p3", player3->name, table.givingCards(player3));
+	online.outPlayer("p4", player4->name, table.givingCards(player4));
 
-	iamPlayer = player1;
-
-	online.inMes();
+	playerChose();
 
 	system("pause");
 	system("cls");
@@ -65,21 +59,24 @@ void HostManager::makeMove() {
 	case Start:
 		cout << "  *Игрок: \033[40m" << iamPlayer->name << "\033[0m\n";
 		printPack(iamPlayer);
-		/*printPack(player2);
-		printPack(player3);
-		printPack(player4);*/
+
 
 		cout << "                *Подсказка!*\n";
 		cout << "  *Черви: c, Пики: p, Буби: b, Крести: k*\n  *Номиналы: 6, 8, 9, 10, J, Q, K, A*\n  *Ход имеет вид:*\n  *k10 - 10 крести,*\n  *bA - туз буби*\n";
 
 		choseFirstPlayer();
 
-		online.outMes("fp:" + currentPlayer->name);
+		online.outMes("fp", currentPlayer->name, "player");
 
 		system("pause");
 		system("cls");
 
-		mode = ChoseMain;
+		if (iamPlayer == currentPlayer) {
+			mode = ChoseMain;
+		}
+		else {
+			mode = First;
+		}
 		break;
 	case First:
 
@@ -89,12 +86,13 @@ void HostManager::makeMove() {
 			printPack(iamPlayer);
 			cout << "*Ход: ";
 			cin >> hod;
-			online.outMes("h:" + currentPlayer->name + ":" + hod);
+			online.outMes("h", hod, "hod");
 		}
 		else {
 			cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m Ходит!\n";
-			cout << "*Ход: "; //получить ход
-			hod = hod; //ход от бота
+			hod = online.inMes("h", "hod");
+			cout << "*Ход: " << hod;		
+			
 		}
 
 		if (currentPlayer->makeMove(hod, lastCard, mMast)) {
@@ -175,9 +173,78 @@ void HostManager::makeMove() {
 	case ChoseMain:
 		if (choseMainMast())
 
-			online.outMes(mast);
+			/*online.outMes("mast", mast);*/
 
 			mode = deal;
 		break;
 	}
+}
+
+void HostManager::playerChose() {
+	int name;
+	bool isName = true;
+	while (isName) {
+		
+		cout << "*[1]. " << player1->name << "\n"
+			<< "*[2]. " << player2->name << "\n"
+			<< "*[3]. " << player3->name << "\n"
+			<< "*[4]. " << player4->name << "\n"
+			<< "*Выберите имя игрока: ";
+
+		cin >> name;
+
+		switch (name) {
+		case 1:
+			if (online.inMes("p1", "Closed") == "true") {
+				system("cls");
+				cout << "*Этот игрок уже занят!\n";
+				continue;
+			}
+			else {
+				iamPlayer = player1;
+				online.outMes("p1", "true", "Closed");
+				isName = false;
+			}
+			break;
+		case 2:
+			if (online.inMes("p2", "Closed") == "true") {
+				system("cls");
+				cout << "*Этот игрок уже занят!\n";
+				continue;
+			}
+			else {
+				iamPlayer = player2;
+				online.outMes("p2", "true", "Closed");
+				isName = false;
+			}
+			break;
+		case 3:
+			if (online.inMes("p3", "Closed") == "true") {
+				system("cls");
+				cout << "*Этот игрок уже занят!\n";
+				continue;
+			}
+			else {
+				iamPlayer = player3;
+				online.outMes("p3", "true", "Closed");
+				isName = false;
+			}
+			break;
+		case 4:
+			if (online.inMes("p4", "Closed") == "true") {
+				system("cls");
+				cout << "*Этот игрок уже занят!\n";
+				continue;
+			}
+			else {
+				iamPlayer = player4;
+				online.outMes("p4", "true", "Closed");
+				isName = false;
+			}
+			break;
+		}
+		continue;
+	}
+
+	cout << "Вы играете под именем: " << iamPlayer->name << "\n";
 }

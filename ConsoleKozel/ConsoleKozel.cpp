@@ -18,6 +18,7 @@ int main()
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
+
     choseMode();
     choseSOMode();
 
@@ -27,6 +28,10 @@ int main()
 
 bool choseMode() {  
     int regim = -1;
+    cout << "               *Приветсвую вас!*\n"
+        "       *Вы попали в самую лучшую в мире*\n"
+        "            *версию карточной игры*\n"
+        "                 ***КОЗЁЛ***\n\n";
     while (true) {
         cout << "Выберите режим игры:\n*1.Одиночная игра\n*2.Создать игру по сети\n*3.Подключиться к существующей игре\n* ";
         cin >> regim;
@@ -46,6 +51,7 @@ bool choseMode() {
             return true;
             break;
         }
+        system("cls");
         return false;
     }
 }

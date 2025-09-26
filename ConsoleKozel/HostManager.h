@@ -13,5 +13,6 @@ public:
 	HostManager(UINT originalCP) : Manager(originalCP) {}
 	virtual void initGame();
 	virtual void makeMove();
+	void playerChose();
 };
 
