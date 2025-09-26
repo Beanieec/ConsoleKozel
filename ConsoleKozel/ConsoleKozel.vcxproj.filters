@@ -48,10 +48,7 @@
     <ClCompile Include="Cards.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Out.cpp">
-      <Filter>Online</Filter>
-    </ClCompile>
-    <ClCompile Include="In.cpp">
+    <ClCompile Include="Firebase.cpp">
       <Filter>Online</Filter>
     </ClCompile>
     <ClCompile Include="SingleManager.cpp">
@@ -86,10 +83,7 @@
     <ClInclude Include="Mode.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Out.h">
-      <Filter>Online\headers</Filter>
-    </ClInclude>
-    <ClInclude Include="In.h">
+    <ClInclude Include="Firebase.h">
       <Filter>Online\headers</Filter>
     </ClInclude>
     <ClInclude Include="SOMode.h">

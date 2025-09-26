@@ -71,7 +71,7 @@ void ClientManager::makeMove() {
 
 		if (currentPlayer->makeMove(hod, lastCard, mMast)) {
 
-			botOuter.outMes(currentPlayer->name + ":" + lastCard.hod);
+			online.outMes(currentPlayer->name + ":" + lastCard.hod);
 
 			table.pack.push_back(lastCard);
 			if (findShaha()) {

@@ -7,7 +7,7 @@
 #include "HumanPlayer.h"
 #include "ComputerPlayer.h"
 #include "Mode.h"
-#include "Out.h"
+
 
 #include <iostream>
 #include <string>
@@ -23,7 +23,7 @@ class Manager
 public:
 	UINT originalCP;
 
-	Out botOuter;
+	
 
 	Table table;
 

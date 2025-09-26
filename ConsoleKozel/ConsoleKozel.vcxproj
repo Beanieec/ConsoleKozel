@@ -134,9 +134,8 @@
     <ClCompile Include="ConsoleKozel.cpp" />
     <ClCompile Include="HostManager.cpp" />
     <ClCompile Include="HumanPlayer.cpp" />
-    <ClCompile Include="In.cpp" />
     <ClCompile Include="Manager.cpp" />
-    <ClCompile Include="Out.cpp" />
+    <ClCompile Include="Firebase.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="SingleManager.cpp" />
     <ClCompile Include="Table.cpp" />
@@ -147,10 +146,9 @@
     <ClInclude Include="ComputerPlayer.h" />
     <ClInclude Include="HostManager.h" />
     <ClInclude Include="HumanPlayer.h" />
-    <ClInclude Include="In.h" />
     <ClInclude Include="Manager.h" />
     <ClInclude Include="Mode.h" />
-    <ClInclude Include="Out.h" />
+    <ClInclude Include="Firebase.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SingleManager.h" />
     <ClInclude Include="SOMode.h" />

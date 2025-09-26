@@ -13,17 +13,14 @@ void HostManager::initGame() {
 	cin.get();
 	getline(cin, name);
 	cout << "\033[0m";
-	player1 = new HumanPlayer(name);
-	
+	player1 = new HumanPlayer(name);	
 
 	cout << "\n*¬ведите им€ 2-го игрока 1-ой тимы:\n* ";
-
 
 	cout << "\033[40m";
 	getline(cin, name);
 	cout << "\033[0m";
 	player3 = new HumanPlayer(name);
-	//table.givingCards(player3);
 
 	cout << "\n*¬ведите им€ 1-го игрока 2-ой команды:\n* ";
 
@@ -31,7 +28,6 @@ void HostManager::initGame() {
 	getline(cin, name);
 	cout << "\033[0m";
 	player2 = new HumanPlayer(name);
-	//table.givingCards(player2);
 
 	cout << "\n*¬ведите им€ 2-го игрока 2-ой команды:\n* ";
 
@@ -39,16 +35,20 @@ void HostManager::initGame() {
 	getline(cin, name);
 	cout << "\033[0m";
 	player4 = new HumanPlayer(name);
-	//table.givingCards(player4);
 
-	botOuter.outMes("p1:" + player1->name + table.givingCards(player1) +
+	online.outMes("p1:" + player1->name + table.givingCards(player1));
+		/*+
 		";\np2:" + player2->name + table.givingCards(player2) + 
 		";\np3:" + player3->name + table.givingCards(player3) + 
-		";\np4:" + player4->name + table.givingCards(player4));
+		";\np4:" + player4->name + table.givingCards(player4));*/
 
 	iamPlayer = player1;
 
+	online.inMes();
+
+	system("pause");
 	system("cls");
+
 
 	while (true) {
 		makeMove();
@@ -74,7 +74,7 @@ void HostManager::makeMove() {
 
 		choseFirstPlayer();
 
-		botOuter.outMes("fp:" + currentPlayer->name);
+		online.outMes("fp:" + currentPlayer->name);
 
 		system("pause");
 		system("cls");
@@ -89,7 +89,7 @@ void HostManager::makeMove() {
 			printPack(iamPlayer);
 			cout << "*’од: ";
 			cin >> hod;
-			botOuter.outMes("h:" + currentPlayer->name + ":" + hod);
+			online.outMes("h:" + currentPlayer->name + ":" + hod);
 		}
 		else {
 			cout << "*»грок: \033[40m" << currentPlayer->name << "\033[0m ’одит!\n";
@@ -175,7 +175,7 @@ void HostManager::makeMove() {
 	case ChoseMain:
 		if (choseMainMast())
 
-			botOuter.outMes(mast);
+			online.outMes(mast);
 
 			mode = deal;
 		break;
