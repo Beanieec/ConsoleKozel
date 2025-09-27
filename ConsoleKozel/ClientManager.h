@@ -11,6 +11,8 @@ public:
 	string curPlayer;
 
 	Firebase online;
+
+	string lasthod = "";
 public:
 	ClientManager(UINT originalCP) : Manager(originalCP) {}
 	~ClientManager();
@@ -18,5 +20,6 @@ public:
 	virtual void makeMove();
 	void playerChose();
 	void getCards();
+	void getCurrentPlayer();
 };
 

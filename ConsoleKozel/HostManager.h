@@ -9,10 +9,13 @@ public:
 	Player* iamPlayer;
 
 	Firebase online;
+
+	string lasthod = "";
 public:
 	HostManager(UINT originalCP) : Manager(originalCP) {}
 	virtual void initGame();
 	virtual void makeMove();
 	void playerChose();
+	void getCurrentPlayer();
 };
 

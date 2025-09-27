@@ -53,7 +53,7 @@ void HostManager::initGame() {
 }
 
 void HostManager::makeMove() {
-
+	
 	switch (mode)
 	{
 	case Start:
@@ -67,6 +67,7 @@ void HostManager::makeMove() {
 		choseFirstPlayer();
 
 		online.outMes("fp", currentPlayer->name, "player");
+		online.outMes("h", "", "hod");
 
 		system("pause");
 		system("cls");
@@ -79,25 +80,33 @@ void HostManager::makeMove() {
 		}
 		break;
 	case First:
-
+		getCurrentPlayer();
 		printInfo();
 		if (currentPlayer == iamPlayer) {
 			cout << "*Игрок: \033[40m" << iamPlayer->name << "\033[0m Ходи!\n";
 			printPack(iamPlayer);
 			cout << "*Ход: ";
 			cin >> hod;
-			online.outMes("h", hod, "hod");
 		}
 		else {
-			cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m Ходит!\n";
-			hod = online.inMes("h", "hod");
-			cout << "*Ход: " << hod;		
-			
+			if (lasthod == online.inMes("h", "hod")) {
+				cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m Ходит!\n";
+				lasthod = online.inMes("h", "hod");
+				Sleep(2000);
+				system("cls");
+				return;
+			}
+			else {
+				cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m Ходит!\n";
+				cout << "*Ход: " << online.inMes("h", "hod");
+				lasthod = online.inMes("h", "hod");
+				return;
+			}				
 		}
 
 		if (currentPlayer->makeMove(hod, lastCard, mMast)) {
 
-			
+			online.outMes("h", hod, "hod");
 			table.pack.push_back(lastCard);
 
 			if (findShaha()) {
@@ -121,6 +130,7 @@ void HostManager::makeMove() {
 		cout << "\n";
 
 		changePlayer();
+		online.outMes("fp", currentPlayer->name, "player");
 		break;
 
 	case bigTits:
@@ -247,4 +257,18 @@ void HostManager::playerChose() {
 	}
 
 	cout << "Вы играете под именем: " << iamPlayer->name << "\n";
+}
+
+
+void HostManager::getCurrentPlayer() {
+	string curPlayerName;
+	curPlayerName = online.inMes("fp", "player");
+	if (player1->name == curPlayerName)
+		currentPlayer = player1;
+	if (player2->name == curPlayerName)
+		currentPlayer = player2;
+	if (player3->name == curPlayerName)
+		currentPlayer = player3;
+	if (player4->name == curPlayerName)
+		currentPlayer = player4;
 }

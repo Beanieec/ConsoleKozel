@@ -15,6 +15,7 @@ void choseSOMode();
 
 int main()
 {    
+    system("TITLE ConsoleKozel *Выберите режим игры");
     SetConsoleCP(1251);
     SetConsoleOutputCP(1251);
 
@@ -39,14 +40,17 @@ bool choseMode() {
         switch (regim)
         {
         case 1:
+            system("TITLE Single");
             somode = Single;
             return true;
             break;
         case 2:
+            system("TITLE Host");
             somode = Host;
             return true;
             break;
         case 3:
+            system("TITLE Client");
             somode = Client;
             return true;
             break;

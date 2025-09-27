@@ -3,6 +3,8 @@
 
 void ClientManager::initGame() {
 	
+	cout << "*Подключение... 99%\n";
+
 	player1 = new HumanPlayer(online.inMes("p1", "Player_name"));
 
 	player3 = new HumanPlayer(online.inMes("p3", "Player_name"));
@@ -11,9 +13,12 @@ void ClientManager::initGame() {
 
 	player4 = new HumanPlayer(online.inMes("p4", "Player_name"));
 
+	system("cls");
+
 	cout << "*Подключение установлено...\n";
 	
 	playerChose();
+
 	getCards();
 	
 
@@ -29,7 +34,7 @@ void ClientManager::initGame() {
 }
 
 void ClientManager::makeMove() {
-	string curPlayerName;
+
 	switch (mode)
 	{
 	case Start:
@@ -39,15 +44,7 @@ void ClientManager::makeMove() {
 		cout << "                *Подсказка!*\n";
 		cout << "  *Черви: c, Пики: p, Буби: b, Крести: k*\n  *Номиналы: 6, 8, 9, 10, J, Q, K, A*\n  *Ход имеет вид:*\n  *k10 - 10 крести,*\n  *bA - туз буби*\n";
 
-		curPlayerName = online.inMes("fp", "player");
-		if (player1->name == curPlayerName)
-			currentPlayer = player1;
-		if (player2->name == curPlayerName)
-			currentPlayer = player2;
-		if (player3->name == curPlayerName)
-			currentPlayer = player3;
-		if (player4->name == curPlayerName)
-			currentPlayer = player4;
+		getCurrentPlayer();
 
 		system("pause");
 		system("cls");
@@ -60,25 +57,34 @@ void ClientManager::makeMove() {
 		}
 		break;
 	case First:
+		getCurrentPlayer();
 		printInfo();
 		if (currentPlayer == iamPlayer) {
 			cout << "*Игрок: \033[40m" << iamPlayer->name << "\033[0m Ходи!\n";
 			printPack(iamPlayer);
 			cout << "*Ход: ";
 			cin >> hod;
-			online.outMes("h", hod, "hod");
 		}
 		else {
-			cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m Ходит!\n";		
-			cout << "*Ход: " << online.inMes("h", "hod");
-			return;
+			if (lasthod == online.inMes("h", "hod")) {
+				cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m Ходит!\n";
+				lasthod = online.inMes("h", "hod");
+				Sleep(2000);
+				system("cls");
+				return;
+			}
+			else {
+				cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m Ходит!\n";
+				cout << "*Ход: " << online.inMes("h", "hod");
+				lasthod = online.inMes("h", "hod");
+				return;
+			}
 		}
 
 		if (currentPlayer->makeMove(hod, lastCard, mMast)) {
+			online.outMes("h", hod, "hod");
 
-			/*online.outMes(currentPlayer->name + ":" + lastCard.hod);*/
-
-			table.pack.push_back(lastCard);
+			/*table.pack.push_back(lastCard);*/
 			if (findShaha()) {
 				mode = ChoseDeal;
 				return;
@@ -100,6 +106,7 @@ void ClientManager::makeMove() {
 		cout << "\n";
 
 		changePlayer();
+		online.outMes("fp", currentPlayer->name, "player");
 		break;
 	case bigTits:
 		printInfo();
@@ -235,5 +242,17 @@ void ClientManager::getCards() {
 			}
 		}
 	}
-	
+}
+
+void ClientManager::getCurrentPlayer() {
+	string curPlayerName;
+	curPlayerName = online.inMes("fp", "player");
+	if (player1->name == curPlayerName)
+		currentPlayer = player1;
+	if (player2->name == curPlayerName)
+		currentPlayer = player2;
+	if (player3->name == curPlayerName)
+		currentPlayer = player3;
+	if (player4->name == curPlayerName)
+		currentPlayer = player4;
 }
