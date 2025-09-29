@@ -7,9 +7,13 @@ nlohman/json
 
 
 \\VCPKG\\
+
 git clone https://github.com/Microsoft/vcpkg.git
+
 cd "your way"/vcpkg
+
 .\bootstrap-vcpkg.bat
+
 .\vcpkg integrate install
 
 .\vcpkg install cpr
