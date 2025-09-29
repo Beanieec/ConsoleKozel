@@ -37,6 +37,8 @@ void HostManager::initGame() {
 	online.outPlayer("p2", player2->name, table.givingCards(player2));
 	online.outPlayer("p3", player3->name, table.givingCards(player3));
 	online.outPlayer("p4", player4->name, table.givingCards(player4));
+	
+	table.init();
 
 	playerChose();
 
@@ -59,7 +61,6 @@ void HostManager::makeMove() {
 	case Start:
 		cout << "  *Игрок: \033[40m" << iamPlayer->name << "\033[0m\n";
 		printPack(iamPlayer);
-
 
 		cout << "                *Подсказка!*\n";
 		cout << "  *Черви: c, Пики: p, Буби: b, Крести: k*\n  *Номиналы: 6, 8, 9, 10, J, Q, K, A*\n  *Ход имеет вид:*\n  *k10 - 10 крести,*\n  *bA - туз буби*\n";
@@ -87,27 +88,29 @@ void HostManager::makeMove() {
 			printPack(iamPlayer);
 			cout << "*Ход: ";
 			cin >> hod;
+			lasthod = hod;
 		}
 		else {
-			if (lasthod == online.inMes("h", "hod")) {
-				cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m Ходит!\n";
-				lasthod = online.inMes("h", "hod");
-				Sleep(2000);
-				system("cls");
-				return;
+			cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m Ходит!\n";
+			while (true) {
+				if (lasthod == online.inMes("h", "hod")) {				
+					Sleep(2000);	
+				}
+				else {	
+					lasthod = online.inMes("h", "hod");
+					cout << "*Ход: " << lasthod << "\n\n";
+					for (int i = 0; i < table.pack.size(); i++) {
+						if (table.pack[i].hod == lasthod)
+							lastCard = table.pack[i];
+					}
+					return;
+				}
 			}
-			else {
-				cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m Ходит!\n";
-				cout << "*Ход: " << online.inMes("h", "hod");
-				lasthod = online.inMes("h", "hod");
-				return;
-			}				
 		}
 
 		if (currentPlayer->makeMove(hod, lastCard, mMast)) {
-
 			online.outMes("h", hod, "hod");
-			table.pack.push_back(lastCard);
+			Sleep(600);
 
 			if (findShaha()) {
 				mode = ChoseDeal;
@@ -132,7 +135,6 @@ void HostManager::makeMove() {
 		changePlayer();
 		online.outMes("fp", currentPlayer->name, "player");
 		break;
-
 	case bigTits:
 
 		printInfo();

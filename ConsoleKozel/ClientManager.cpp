@@ -64,27 +64,30 @@ void ClientManager::makeMove() {
 			printPack(iamPlayer);
 			cout << "*Ход: ";
 			cin >> hod;
+			lasthod = hod;
 		}
 		else {
-			if (lasthod == online.inMes("h", "hod")) {
-				cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m Ходит!\n";
-				lasthod = online.inMes("h", "hod");
-				Sleep(2000);
-				system("cls");
-				return;
-			}
-			else {
-				cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m Ходит!\n";
-				cout << "*Ход: " << online.inMes("h", "hod");
-				lasthod = online.inMes("h", "hod");
-				return;
+			cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m Ходит!\n";
+			while (true) {
+				if (lasthod == online.inMes("h", "hod")) {
+					Sleep(2000);
+				}
+				else {
+					lasthod = online.inMes("h", "hod");
+					cout << "*Ход: " << lasthod << "\n\n";
+					for (int i = 0; i < table.pack.size(); i++) {
+						if (table.pack[i].hod == lasthod)
+							lastCard = table.pack[i];
+					}
+					return;
+				}
 			}
 		}
 
 		if (currentPlayer->makeMove(hod, lastCard, mMast)) {
 			online.outMes("h", hod, "hod");
+			Sleep(600);
 
-			/*table.pack.push_back(lastCard);*/
 			if (findShaha()) {
 				mode = ChoseDeal;
 				return;

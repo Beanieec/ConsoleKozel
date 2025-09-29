@@ -18,6 +18,7 @@ public:
 	std::vector<Cards> pack;
 
 public:
+	void init();
 	void packShuffle();
 	void clearHand(Player* player);
 	string givingCards(Player* player);

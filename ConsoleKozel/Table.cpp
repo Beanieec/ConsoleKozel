@@ -1,6 +1,10 @@
 ﻿#include "Table.h"
 
 Table::Table() {
+    init();
+}
+
+void Table::init() {
     pack = { bA, cA, pA, kA,
             b10, c10, p10, k10,
             bK, cK, pK, kK,
@@ -11,7 +15,6 @@ Table::Table() {
             b6, c6, p6, k6 };
     packShuffle();
 }
-
 
 void Table::packShuffle() {
     srand(time(0));
