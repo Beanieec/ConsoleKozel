@@ -19,3 +19,11 @@ cd "your way"/vcpkg
 .\vcpkg install cpr
 
 .\vcpkg install nlohmann-json
+
+\\Console settings\\
+
+size: 45x30
+
+font: Consolas 23pt
+
+backcolor: 28 74 40
