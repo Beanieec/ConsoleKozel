@@ -77,6 +77,8 @@ void HostManager::makeMove() {
 			mode = ChoseMain;
 		}
 		else {
+			mast = online.inMes("mast", "Mainmast");
+			findMainMast();
 			mode = First;
 		}
 		break;
@@ -94,7 +96,7 @@ void HostManager::makeMove() {
 			cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m Ходит!\n";
 			while (true) {
 				if (lasthod == online.inMes("h", "hod")) {				
-					Sleep(2000);	
+					Sleep(1000);	
 				}
 				else {	
 					lasthod = online.inMes("h", "hod");
@@ -110,7 +112,7 @@ void HostManager::makeMove() {
 
 		if (currentPlayer->makeMove(hod, lastCard, mMast)) {
 			online.outMes("h", hod, "hod");
-			Sleep(600);
+			/*Sleep(600);*/
 
 			if (findShaha()) {
 				mode = ChoseDeal;
@@ -184,9 +186,7 @@ void HostManager::makeMove() {
 
 	case ChoseMain:
 		if (choseMainMast())
-
-			/*online.outMes("mast", mast);*/
-
+			online.outMes("mast", mast, "Mainmast");
 			mode = deal;
 		break;
 	}

@@ -180,11 +180,25 @@ void Manager::printMast(Mast mast) {
 	SetConsoleOutputCP(1251);
 }
 
+
+
 bool Manager::choseMainMast() {
-	
+
 	cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m выберите козырь!\n*(bubi, cervi, piki, kresti):  ";
 	cin >> mast;
+	if (findMainMast()) {
+		return true;
+	}
+	else {
+		system("cls");
+		cout << "*Такой масти нет!\n";
+		return false;
+	}
+
+}
 	
+bool Manager::findMainMast() {
+
 	if (mast == "bubi") {
 		mMast = bubi;
 		system("cls");
@@ -205,11 +219,6 @@ bool Manager::choseMainMast() {
 		system("cls");
 		return true;
 	}	
-	else {
-		system("cls");
-		cout << "*Такой масти нет!\n";
-		return false;
-	}
 }
 
 bool Manager::choseFirstPlayer() {

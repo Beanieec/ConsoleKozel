@@ -81,6 +81,7 @@ public:
 	bool countRound(int count);
 
 	bool choseMainMast();
+	bool findMainMast();
 
 	void printInfo();
 	void printCard(Cards card);

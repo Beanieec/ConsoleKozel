@@ -53,11 +53,14 @@ void ClientManager::makeMove() {
 			mode = ChoseMain;
 		}
 		else {
+			mast = online.inMes("mast", "Mainmast");
+			findMainMast();
 			mode = First;
 		}
 		break;
 	case First:
 		getCurrentPlayer();
+
 		printInfo();
 		if (currentPlayer == iamPlayer) {
 			cout << "*Игрок: \033[40m" << iamPlayer->name << "\033[0m Ходи!\n";
@@ -70,7 +73,7 @@ void ClientManager::makeMove() {
 			cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m Ходит!\n";
 			while (true) {
 				if (lasthod == online.inMes("h", "hod")) {
-					Sleep(2000);
+					Sleep(1000);
 				}
 				else {
 					lasthod = online.inMes("h", "hod");
@@ -86,7 +89,7 @@ void ClientManager::makeMove() {
 
 		if (currentPlayer->makeMove(hod, lastCard, mMast)) {
 			online.outMes("h", hod, "hod");
-			Sleep(600);
+			/*Sleep(600);*/
 
 			if (findShaha()) {
 				mode = ChoseDeal;
@@ -157,6 +160,7 @@ void ClientManager::makeMove() {
 		break;
 	case ChoseMain:
 		if (choseMainMast())
+			online.outMes("mast", mast, "Mainmast");
 			mode = deal;
 		break;
 	}
@@ -259,3 +263,4 @@ void ClientManager::getCurrentPlayer() {
 	if (player4->name == curPlayerName)
 		currentPlayer = player4;
 }
+
