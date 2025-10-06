@@ -1,13 +1,17 @@
-# ConsoleKozel
-<img width="508" height="722" alt="image" src="https://github.com/user-attachments/assets/8fab5666-cb2f-41c0-abcf-7c1c634d3fd6" />
+<h1 align="center" >ConsoleKozel</h1>
+<div align="center" >
+  <img  width="526" height="309" alt="image" src="https://github.com/user-attachments/assets/3c4252f9-aa3f-4c3c-8c87-afdaeb630572" />
+</div>
 
-u need lib:
-CPR
-nlohman/json
+### You must download this these dependencies:
+>CPR
+
+>nlohman/json
 
 
-\\VCPKG\\
+### VCPKG installing
 
+```
 git clone https://github.com/Microsoft/vcpkg.git
 
 cd "your way"/vcpkg
@@ -16,14 +20,18 @@ cd "your way"/vcpkg
 
 .\vcpkg integrate install
 
+```
+```
 .\vcpkg install cpr
-
+```
+```
 .\vcpkg install nlohmann-json
+```
 
-\\Console settings\\
+### Console settings
 
-size: 45x30
-
-font: Consolas 23pt
-
-backcolor: 28 74 40
+>size: 45x30
+>
+>font: Consolas 23pt
+>
+>backcolor: 28 74 40
