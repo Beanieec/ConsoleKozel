@@ -25,15 +25,18 @@ void Table::clearHand(Player* player) {
     }
 }
 
-void Table::givingCards(Player* player) {
+void Table::givingCards(Player* player) 
+{
     for (int i = 0; i < 8; i++) {
         player->hand.push_back(pack.back());
         pack.pop_back();
     }
 }
 
-void Table::givingBigTits(Player* player) {
-    for (int i = 0; i < 4; i++) {
+void Table::givingSimpleDeals(Player* player, int deal) 
+{
+    for (int i = 0; i < deal; i++)
+    {
         player->hand.push_back(pack.back());
         pack.pop_back();
     }

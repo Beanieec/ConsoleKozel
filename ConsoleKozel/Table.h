@@ -21,7 +21,7 @@ public:
 	void packShuffle();
 	void clearHand(Player* player);
 	void givingCards(Player* player);
-	void givingBigTits(Player* player);
+	void givingSimpleDeals(Player* player, int deal);
 
 };
 

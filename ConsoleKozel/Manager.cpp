@@ -85,7 +85,7 @@ void Manager::makeMove() {
 		cout << "*Ход: ";
 		cin >> hod;
 
-		if (currentPlayer->makeMove(hod, lastCard, mMast)) {
+		if (currentPlayer->HonestlyMakeMove(hod, firstCard, lastCard, mMast)) {
 			
 			botOuter.outMes(currentPlayer->name + ":" + lastCard.hod);
 
@@ -112,7 +112,8 @@ void Manager::makeMove() {
 
 		changePlayer();
 		break;
-	case bigTits:
+
+	case SimpleDeals:
 		printInfo();
 		cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m Ходи!\n";
 		printPack(currentPlayer);
@@ -120,19 +121,31 @@ void Manager::makeMove() {
 		cout << "*Ход: ";
 		cin >> hod;
 
-		if (currentPlayer->makeMove(hod, lastCard, mMast)) {
-			if (findShaha()) {
+		if (currentPlayer->HonestlyMakeMove(hod,firstCard, lastCard, mMast))
+		{
+			if (findShaha()) 
+			{
 				mode = ChoseDeal;
 				return;
 			}
-			if (checkAndCodition()) {
-				if (countRound(4))
+			if (checkAndCodition()) 
+			{
+				if (countRound(8))
 				{
-					if (getWinDeal()) {
-
+					if (getWinDeal())
+					{
+						//обновить карты
 						mode = ChoseDeal;
+						return;
 					}
-					
+				}
+				if (player1->hand.empty() && player2->hand.empty() && player3->hand.empty() && player4->hand.empty())
+				{
+					table.givingSimpleDeals(player1, choseDeal(deals));
+					table.givingSimpleDeals(player2, choseDeal(deals));
+					table.givingSimpleDeals(player3, choseDeal(deals));
+					table.givingSimpleDeals(player4, choseDeal(deals));
+					mode = ChoseMain;
 				}
 				return;
 			}
@@ -150,12 +163,13 @@ void Manager::makeMove() {
 
 	case ChoseDeal:
 		changeDealChooser();
-		int deals;
 		cout << "Выберите хвалёнку\n";
 		cin >> deals;
+		countRounder = 0;
 		choseDeal(deals);
 		mode = ChoseMain;
 		break;
+
 	case ChoseMain:
 		if (choseMainMast())
 			mode = deal;
@@ -204,7 +218,6 @@ bool Manager::getWinDeal() {
 	return false;
 }
 
-
 bool Manager::checkAndCodition() {
 	stepCounter++;
 	if (stepCounter == 1) {
@@ -214,13 +227,13 @@ bool Manager::checkAndCodition() {
 		realScore += lastCard.point;
 
 
-		if (lastCard.level >= 16) { // J Q
+		if (lastCard.level >= 7) { // J Q
 			if (lastCard.level > winCard.level) {
 				winCard = lastCard;
 				winPlayer = currentPlayer;
 			}
 		}
-		else if (lastCard.mast == mMast && winCard.level < 16) { // козыри
+		else if (lastCard.mast == mMast && winCard.level < 7) { // козыри
 			if (winCard.mast == mMast) {
 				if (lastCard.level > winCard.level) { 
 					winCard = lastCard;
@@ -246,9 +259,15 @@ bool Manager::checkAndCodition() {
 			scoreT1 += realScore;
 		else
 			scoreT2 += realScore;
-		if (mode == First) {
+		if(mode == First) 
+		{
 			currentPlayer = winPlayer;
 		}
+		if(mode == SimpleDeals)
+		{
+			currentPlayer = dealChooser;
+		}
+		countRounder++;
 		defValue();
 		return true;
 	}
@@ -273,15 +292,19 @@ void Manager::changePlayer() {
 void Manager::changeDealChooser() {
 	if (dealChooser == player1) {
 		currentPlayer = player2;
+		dealChooser = player2;
 	}
 	else if (dealChooser == player2) {
 		currentPlayer = player3;
+		dealChooser = player3;
 	}
 	else if (dealChooser == player3) {
 		currentPlayer = player4;
+		dealChooser = player4;
 	}
 	else {
 		currentPlayer = player1;
+		dealChooser = player1;
 	}
 }
 
@@ -345,7 +368,9 @@ void Manager::printMast(Mast mast) {
 
 bool Manager::choseMainMast() {
 	string mast;
-	cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m выберите козырь!\n*(b, c, p, k):  ";
+	system("cls");
+	cout << "*Игрок: \033[40m" << currentPlayer->name << "\033[0m выберите козырь!\n*(b, c, p, k):  \n";
+	printPack(currentPlayer);
 	cin >> mast;
 	
 	if (mast == "b") {
@@ -391,22 +416,44 @@ bool Manager::choseFirstPlayer() {
 	}
 }
 
-void Manager::choseDeal(int deal) {
-	switch (deal) {
+int Manager::choseDeal(int Deal) {
+	switch (Deal) {
 	case 1:
-		table.packShuffle();
-		table.givingCards(player1);
-		table.givingCards(player2);
-		table.givingCards(player3);
-		table.givingCards(player4);
+		if(countRounder == 0)
+		{
+			cout << table.pack.size();
+			table.packShuffle();
+			table.givingSimpleDeals(player1, 2);
+			table.givingSimpleDeals(player2, 2);
+			table.givingSimpleDeals(player3, 2);
+			table.givingSimpleDeals(player4, 2);
+			deal = SimpleDeals;
+		}
+		return 2;
 		break;
 	case 2:
-		deal = bigTits;
-		table.packShuffle();
-		table.givingBigTits(player1);
-		table.givingBigTits(player2);
-		table.givingBigTits(player3);
-		table.givingBigTits(player4);
+		if (countRounder == 0)
+		{
+			table.packShuffle();
+			table.givingSimpleDeals(player1, 4);
+			table.givingSimpleDeals(player2, 4);
+			table.givingSimpleDeals(player3, 4);
+			table.givingSimpleDeals(player4, 4);
+			deal = SimpleDeals;
+		}
+		return 4;
+		break;
+	case 3:
+		if (countRounder == 0)
+		{
+			table.packShuffle();
+			table.givingSimpleDeals(player1, 8);
+			table.givingSimpleDeals(player2, 8);
+			table.givingSimpleDeals(player3, 8);
+			table.givingSimpleDeals(player4, 8);
+			deal = SimpleDeals;
+		}
+		return 8;
 		break;
 	}
 }
@@ -458,13 +505,8 @@ void Manager::defValue() {
 }
 bool Manager::countRound(int count)
 {
-	countRounder++;
-	if(countRounder == count)
+	if (countRounder == count)
 	{
-		table.givingBigTits(player1);
-		table.givingBigTits(player2);
-		table.givingBigTits(player3);
-		table.givingBigTits(player4);
 		return true;
 	}
 	return false;

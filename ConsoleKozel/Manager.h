@@ -33,13 +33,13 @@ private:
 	Player* player3;
 	Player* player4;
 
-	Player* dealChooser;
+	Player* dealChooser = player1;
 	Player* winPlayer;
 
 	Player* shahaPlayer;
 	Player* qPlayer;
 	
-	
+	Cards firstCard = ukncard;
 	Cards lastCard = ukncard;
 	Cards winCard = ukncard;
 	
@@ -56,7 +56,8 @@ private:
 	int scoreT2 = 0;
 	int endScoreT1 = 0;
 	int endScoreT2 = 0;
-	int countRounder = 0;
+	int countRounder = 1;
+	int deals=0;
 
 	//флаги
 	int Eggs = 0;
@@ -76,7 +77,7 @@ private:
 	bool choseFirstPlayer();
 	bool getWinDeal();
 
-	void choseDeal(int deal);
+	int choseDeal(int deal);
 	bool countRound(int count);
 
 	bool choseMainMast();
