@@ -4,9 +4,9 @@
 </div>
 
 ### You must download these dependencies/Вы должны скачать эти зависимости:
->CPR
+>[CPR](https://github.com/libcpr/cpr)
 
->nlohman/json
+>[nlohman/json](https://github.com/nlohmann/json)
 
 
 ### VCPKG installing/установка
