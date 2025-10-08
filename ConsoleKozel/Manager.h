@@ -49,7 +49,6 @@ private:
 	Mode mode = Start;
 	Mode deal = First;
 	
-
 	int stepCounter = 0;
 	int realScore = 0;
 	int scoreT1 = 0;

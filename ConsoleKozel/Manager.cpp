@@ -121,7 +121,7 @@ void Manager::makeMove() {
 		cout << "*Ход: ";
 		cin >> hod;
 
-		if (currentPlayer->HonestlyMakeMove(hod,firstCard, lastCard, mMast))
+		if (currentPlayer->HonestlyMakeMove(hod, firstCard, lastCard, mMast))
 		{
 			if (findShaha()) 
 			{
@@ -222,6 +222,7 @@ bool Manager::checkAndCodition() {
 	stepCounter++;
 	if (stepCounter == 1) {
 		gameMast = lastCard.mast;
+		firstCard = lastCard;
 	}
 	if (stepCounter <= 4) {
 		realScore += lastCard.point;
@@ -498,11 +499,13 @@ bool Manager::findShaha() {
 void Manager::defValue() {
 	stepCounter = 0;
 	realScore = 0;
+	firstCard = ukncard;
 	lastCard = ukncard;
 	winCard = ukncard;
 	shaha = false;
 	Q = false;
 }
+
 bool Manager::countRound(int count)
 {
 	if (countRounder == count)

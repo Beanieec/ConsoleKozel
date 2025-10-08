@@ -20,6 +20,7 @@ bool HumanPlayer::HonestlyMakeMove(string hod, Cards firstCard, Cards& card, Mas
 {
 	bool FlagTrump = false;
 	bool FlagSimple = false;
+
 	for (int i = 0; i < hand.size(); i++)
 	{
 		if (hand[i].level >= 7 || hand[i].mast == mast)
@@ -28,15 +29,24 @@ bool HumanPlayer::HonestlyMakeMove(string hod, Cards firstCard, Cards& card, Mas
 		}
 		if (hand[i].mast == firstCard.mast && hand[i].level < 7)
 		{
-			FlagSimple = false;
+			FlagSimple = true;
 		}
+	}
+
+	for (int i = 0; i < hand.size(); i++)
+	{
 		if (hod == hand[i].hod)
 		{
-			firstCard = hand[i];
-
-			if (firstCard.level >= 7 || firstCard.mast == mast)
+			if (firstCard.card == ukncard)
 			{
-				if (hand[i].level >= 7 || hand[i].mast == mast)
+				card = hand[i];
+				hand.erase(hand.cbegin() + i);
+				return true;
+			}
+		    //козырь
+			if ((firstCard.level >= 7) || (firstCard.mast == mast))
+			{
+				if ((hand[i].level >= 7) || (hand[i].mast == mast))
 				{
 					card = hand[i];
 					hand.erase(hand.cbegin() + i);
@@ -53,6 +63,7 @@ bool HumanPlayer::HonestlyMakeMove(string hod, Cards firstCard, Cards& card, Mas
 					return false;
 				}
 			}
+			//простушка
 			else
 			{
 				if (hand[i].mast == firstCard.mast && hand[i].level < 7)
@@ -69,9 +80,10 @@ bool HumanPlayer::HonestlyMakeMove(string hod, Cards firstCard, Cards& card, Mas
 						hand.erase(hand.cbegin() + i);
 						return true;
 					}
+					return false;
 				}
-
 			}
+			return false;
 		}
 	}
 	return false;
